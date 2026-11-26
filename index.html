@@ -1,0 +1,1658 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>四级作文「模块一」拼写与套用训练营</title>
+  <style>
+    :root {
+      --bg: #f4f6fb;
+      --card: #ffffff;
+      --surface: #eef2f8;
+      --border: #dce3ef;
+      --text: #0f172a;
+      --muted: #5b677d;
+      --primary: #2563eb;
+      --primary-hover: #1d4ed8;
+      --primary-fg: #ffffff;
+      --green: #059669;
+      --green-bg: rgba(5, 150, 105, 0.12);
+      --red: #dc2626;
+      --red-bg: rgba(220, 38, 38, 0.12);
+      --amber: #d97706;
+      --amber-bg: rgba(217, 119, 6, 0.14);
+      --sky: #0284c7;
+      --violet: #7c3aed;
+      --shadow: 0 4px 20px rgba(15, 23, 42, 0.05);
+    }
+
+    html.dark {
+      --bg: #0b1120;
+      --card: #131c31;
+      --surface: #1b2640;
+      --border: #2a3756;
+      --text: #f1f5f9;
+      --muted: #94a3b8;
+      --primary: #3b82f6;
+      --primary-hover: #60a5fa;
+      --primary-fg: #ffffff;
+      --green: #34d399;
+      --green-bg: rgba(52, 211, 153, 0.14);
+      --red: #f87171;
+      --red-bg: rgba(248, 113, 113, 0.14);
+      --amber: #fbbf24;
+      --amber-bg: rgba(251, 191, 36, 0.15);
+      --sky: #38bdf8;
+      --violet: #a78bfa;
+      --shadow: 0 6px 24px rgba(0, 0, 0, 0.35);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      padding: 18px 14px 48px;
+      background: var(--bg);
+      color: var(--text);
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Microsoft YaHei", sans-serif;
+      line-height: 1.55;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .container {
+      max-width: 920px;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      padding: 20px;
+      box-shadow: var(--shadow);
+    }
+
+    .header-top {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 16px;
+    }
+
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 4px 10px;
+      border-radius: 999px;
+      background: var(--surface);
+      color: var(--muted);
+      font-size: 12px;
+      font-weight: 600;
+      margin-bottom: 8px;
+    }
+
+    h1 {
+      margin: 0;
+      font-size: 22px;
+      line-height: 1.3;
+    }
+
+    .subtitle {
+      margin: 6px 0 0;
+      font-size: 14px;
+      color: var(--muted);
+    }
+
+    .stats-row {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    .stat-box {
+      background: var(--surface);
+      border-radius: 12px;
+      padding: 8px 14px;
+      text-align: center;
+      min-width: 92px;
+    }
+
+    .stat-label {
+      font-size: 12px;
+      color: var(--muted);
+    }
+
+    .stat-val {
+      font-size: 18px;
+      font-weight: 700;
+    }
+
+    .nav-tabs {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 18px;
+      padding-top: 16px;
+      border-top: 1px solid var(--border);
+    }
+
+    button, select, input {
+      font-family: inherit;
+    }
+
+    .btn {
+      border: 1px solid transparent;
+      border-radius: 11px;
+      padding: 9px 15px;
+      font-size: 14px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: opacity 0.15s ease, background 0.15s ease, transform 0.08s ease;
+      background: var(--surface);
+      color: var(--text);
+    }
+
+    .btn:hover {
+      opacity: 0.88;
+    }
+
+    .btn:active {
+      transform: scale(0.98);
+    }
+
+    .btn-primary {
+      background: var(--primary);
+      color: var(--primary-fg);
+    }
+
+    .btn-success {
+      background: var(--green);
+      color: #ffffff;
+    }
+
+    .btn-outline {
+      background: transparent;
+      border-color: var(--border);
+      color: var(--muted);
+    }
+
+    .btn-sm {
+      padding: 5px 11px;
+      font-size: 12px;
+      border-radius: 8px;
+    }
+
+    .ref-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    .ref-title {
+      font-size: 12px;
+      font-weight: 700;
+      color: var(--muted);
+      letter-spacing: 0.04em;
+    }
+
+    .ref-box {
+      margin-top: 12px;
+      padding: 14px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+      font-size: 14px;
+      line-height: 1.75;
+    }
+
+    .hl-word {
+      color: var(--sky);
+      font-weight: 700;
+    }
+
+    .hl-slot {
+      display: inline-block;
+      padding: 1px 6px;
+      border-radius: 6px;
+      background: var(--amber-bg);
+      color: var(--amber);
+      font-weight: 700;
+    }
+
+    .hidden {
+      display: none !important;
+    }
+
+    /* 词卡网格 */
+    .toolbar {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 12px;
+    }
+
+    .filter-group {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .cards-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(310px, 1fr));
+      gap: 14px;
+    }
+
+    .word-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 16px;
+      box-shadow: var(--shadow);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      gap: 12px;
+    }
+
+    .word-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 8px;
+    }
+
+    .syllables {
+      font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+      font-size: 21px;
+      font-weight: 700;
+      letter-spacing: 0.02em;
+    }
+
+    .syl-0 { color: var(--sky); }
+    .syl-1 { color: var(--green); }
+    .syl-2 { color: var(--amber); }
+    .syl-3 { color: var(--violet); }
+    .syl-dot { opacity: 0.4; margin: 0 3px; }
+
+    .phonetic-line {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-top: 4px;
+      flex-wrap: wrap;
+    }
+
+    .phonetic {
+      font-size: 13px;
+      color: var(--muted);
+    }
+
+    .meaning {
+      font-size: 14px;
+      font-weight: 700;
+    }
+
+    .tag-row {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      flex-shrink: 0;
+    }
+
+    .tag {
+      font-size: 12px;
+      font-weight: 600;
+      padding: 2px 7px;
+      border-radius: 6px;
+    }
+
+    .tag-hard { background: var(--red-bg); color: var(--red); }
+    .tag-mastered { background: var(--green-bg); color: var(--green); }
+    .tag-mistake { background: var(--amber-bg); color: var(--amber); }
+
+    .tip-box {
+      background: var(--surface);
+      border-radius: 10px;
+      padding: 10px 12px;
+      font-size: 13px;
+      line-height: 1.55;
+    }
+
+    .try-row {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding-top: 10px;
+      border-top: 1px solid var(--border);
+    }
+
+    .input-field {
+      width: 100%;
+      padding: 10px 12px;
+      border-radius: 10px;
+      border: 1px solid var(--border);
+      background: var(--surface);
+      color: var(--text);
+      font-size: 16px;
+      outline: none;
+    }
+
+    .input-field:focus {
+      border-color: var(--primary);
+      box-shadow: 0 0 0 2px rgba(37, 99, 235, 0.2);
+    }
+
+    .try-input {
+      flex: 1;
+      font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+      padding: 7px 10px;
+      font-size: 15px;
+    }
+
+    .try-status {
+      min-width: 56px;
+      text-align: right;
+      font-size: 12px;
+      font-weight: 700;
+    }
+
+    /* 拼写闯关 */
+    .panel-top {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+      padding-bottom: 14px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .control-pair {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    .select-field {
+      padding: 7px 10px;
+      border-radius: 10px;
+      border: 1px solid var(--border);
+      background: var(--surface);
+      color: var(--text);
+      font-size: 13px;
+      font-weight: 500;
+    }
+
+    .spell-meta {
+      display: flex;
+      justify-content: space-between;
+      font-size: 13px;
+      color: var(--muted);
+      margin-top: 14px;
+    }
+
+    .spell-center {
+      text-align: center;
+      padding: 14px 0 8px;
+    }
+
+    .spell-meaning {
+      font-size: 28px;
+      font-weight: 800;
+    }
+
+    .spell-sub {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 10px;
+      margin-top: 6px;
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .spell-hint-txt {
+      margin-top: 10px;
+      font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+      font-size: 15px;
+      letter-spacing: 0.14em;
+      color: var(--amber);
+      font-weight: 700;
+    }
+
+    .letter-slots {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 6px;
+      margin: 14px 0;
+    }
+
+    .slot-cell {
+      width: 34px;
+      height: 42px;
+      border-radius: 9px;
+      border: 1px solid var(--border);
+      background: var(--surface);
+      color: var(--muted);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+      font-size: 18px;
+      font-weight: 700;
+    }
+
+    .slot-ok {
+      border-color: var(--green);
+      background: var(--green-bg);
+      color: var(--green);
+    }
+
+    .slot-err {
+      border-color: var(--red);
+      background: var(--red-bg);
+      color: var(--red);
+    }
+
+    .slot-peek {
+      border-color: var(--amber);
+      background: var(--amber-bg);
+      color: var(--amber);
+    }
+
+    .spell-input-wrap {
+      max-width: 440px;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .spell-main-input {
+      text-align: center;
+      font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+      font-size: 18px;
+      padding: 12px;
+    }
+
+    .btn-center {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 8px;
+    }
+
+    .feedback-box {
+      margin-top: 14px;
+      padding: 12px 14px;
+      border-radius: 12px;
+      font-size: 14px;
+      text-align: center;
+    }
+
+    .fb-ok {
+      background: var(--green-bg);
+      color: var(--green);
+      border: 1px solid var(--green);
+    }
+
+    .fb-err {
+      background: var(--red-bg);
+      color: var(--red);
+      border: 1px solid var(--red);
+    }
+
+    .fb-warn {
+      background: var(--amber-bg);
+      color: var(--amber);
+      border: 1px solid var(--amber);
+    }
+
+    /* 挖空默写 */
+    .cloze-box {
+      margin-top: 16px;
+      padding: 18px;
+      border-radius: 14px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      font-size: 17px;
+      line-height: 2.3;
+    }
+
+    .cloze-wrap {
+      display: inline-flex;
+      align-items: baseline;
+      margin: 2px 3px;
+    }
+
+    .cloze-input {
+      font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+      font-size: 16px;
+      text-align: center;
+      padding: 2px 6px;
+      border-radius: 8px;
+      border: 1px solid var(--border);
+      background: var(--card);
+      color: var(--text);
+      outline: none;
+    }
+
+    .cloze-input:focus {
+      border-color: var(--primary);
+    }
+
+    .cloze-input.ok {
+      border-color: var(--green);
+      background: var(--green-bg);
+      color: var(--green);
+      font-weight: 700;
+    }
+
+    .cloze-input.err {
+      border-color: var(--red);
+      background: var(--red-bg);
+      color: var(--red);
+    }
+
+    .cloze-ans-tip {
+      font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+      font-size: 12px;
+      color: var(--red);
+      margin-left: 4px;
+      font-weight: 700;
+    }
+
+    .cloze-actions {
+      margin-top: 16px;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+    }
+
+    /* 真题套用 */
+    .prompt-box {
+      margin-top: 14px;
+      padding: 14px;
+      border-radius: 12px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      font-size: 15px;
+      line-height: 1.7;
+    }
+
+    .apply-grid {
+      margin-top: 16px;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 12px;
+    }
+
+    .field-group {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .field-label {
+      font-size: 12px;
+      font-weight: 700;
+      color: var(--muted);
+    }
+
+    .preview-box {
+      margin-top: 16px;
+      padding: 14px;
+      border-radius: 12px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+    }
+
+    .preview-text {
+      margin: 8px 0 0;
+      font-size: 16px;
+      line-height: 1.75;
+    }
+
+    .link-btn {
+      background: none;
+      border: none;
+      padding: 0;
+      color: var(--primary);
+      font-size: 12px;
+      font-weight: 600;
+      text-decoration: underline;
+      cursor: pointer;
+      margin-top: 8px;
+    }
+
+    .footer-note {
+      text-align: center;
+      font-size: 12px;
+      color: var(--muted);
+      padding-top: 6px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+
+    <!-- 顶部栏 -->
+    <header class="card">
+      <div class="header-top">
+        <div>
+          <div class="badge">四级作文救星 · 模块一（开头段）</div>
+          <h1>模板词汇拼写 &amp; 套用训练营</h1>
+          <p class="subtitle">把模板里的 14 个核心词拆成音节练熟，再直接默写整句和套真题，上考场一字不拼错。</p>
+        </div>
+        <div class="stats-row">
+          <div class="stat-box">
+            <div class="stat-label">已掌握词汇</div>
+            <div class="stat-val"><span id="masteredCount">0</span> / 14</div>
+          </div>
+          <div class="stat-box">
+            <div class="stat-label">待巩固错词</div>
+            <div class="stat-val" style="color: var(--amber);" id="mistakeCount">0</div>
+          </div>
+          <button id="themeToggleBtn" class="btn btn-outline btn-sm" title="切换深浅色模式">🌓 主题</button>
+        </div>
+      </div>
+
+      <nav class="nav-tabs" role="tablist">
+        <button data-tab="cards" class="btn tab-btn">1. 音节拆解词卡</button>
+        <button data-tab="spell" class="btn tab-btn">2. 拼写闯关</button>
+        <button data-tab="cloze" class="btn tab-btn">3. 整句挖空默写</button>
+        <button data-tab="apply" class="btn tab-btn">4. 真题套用实战</button>
+      </nav>
+    </header>
+
+    <!-- 原句速查条 -->
+    <section class="card" style="padding: 14px 18px;">
+      <div class="ref-header">
+        <span class="ref-title">模板原句对照</span>
+        <div style="display:flex; gap:8px;">
+          <button id="speakFullBtn" class="btn btn-sm">🔊 朗读示范句</button>
+          <button id="toggleRefBtn" class="btn btn-outline btn-sm">收起</button>
+        </div>
+      </div>
+      <div id="refContent" class="ref-box">
+        With the <span class="hl-word">rapid</span> <span class="hl-word">development</span> of <span class="hl-word">society</span>,
+        <span class="hl-slot">[XX]</span>
+        <span class="hl-word">becomes/become</span> <span class="hl-word">increasingly</span> <span class="hl-word">important</span> for <span class="hl-word">people / students</span>.
+        It is <span class="hl-word">quite</span> <span class="hl-word">natural</span> for us to <span class="hl-word">ponder</span>
+        <span class="hl-slot">[why people need it / the pros and cons of it / how to use it properly / how to achieve this goal]</span>.
+      </div>
+    </section>
+
+    <!-- TAB 1: 音节拆解词卡 -->
+    <main id="tab-cards" class="tab-panel">
+      <div class="toolbar">
+        <div class="filter-group">
+          <button data-filter="all" class="btn btn-sm filter-btn">全部 14 词</button>
+          <button data-filter="hard" class="btn btn-sm filter-btn">高危易拼错 (7词)</button>
+          <button data-filter="mistakes" class="btn btn-sm filter-btn">只看错题本</button>
+        </div>
+        <span style="font-size:12px; color:var(--muted);">提示：点每张卡片底部「遮住试拼」可直接练习</span>
+      </div>
+      <div id="cardsGrid" class="cards-grid"></div>
+    </main>
+
+    <!-- TAB 2: 拼写闯关 -->
+    <main id="tab-spell" class="tab-panel hidden">
+      <div class="card">
+        <div class="panel-top">
+          <div class="control-pair">
+            <span style="font-size:13px; font-weight:600;">出题范围：</span>
+            <select id="spellScope" class="select-field">
+              <option value="all">全部 14 个模板词</option>
+              <option value="hard">仅高危易错词（推荐）</option>
+              <option value="mistakes">仅错题本词汇</option>
+            </select>
+          </div>
+          <div class="control-pair">
+            <span style="font-size:13px; font-weight:600;">提示等级：</span>
+            <select id="spellHintLevel" class="select-field">
+              <option value="syllable">显示音节骨架（初级）</option>
+              <option value="first">仅显示首字母（进阶）</option>
+              <option value="none">盲拼（考场模式）</option>
+            </select>
+          </div>
+        </div>
+
+        <div id="spellEmptyMsg" class="hidden" style="text-align:center; padding:32px 12px; color:var(--muted); font-size:14px;">
+          错题本目前是空的！可以先选「全部 14 个模板词」开始练习。
+        </div>
+
+        <div id="spellArena">
+          <div class="spell-meta">
+            <span>第 <strong id="spellIndex">1</strong> / <strong id="spellTotal">14</strong> 题</span>
+            <span>当前连对：<strong id="spellStreak" style="color:var(--green);">0</strong></span>
+          </div>
+
+          <div class="spell-center">
+            <div id="spellMeaning" class="spell-meaning">发展</div>
+            <div class="spell-sub">
+              <span id="spellPhonetic">/dɪˈveləpmənt/</span>
+              <button id="spellSpeakBtn" class="btn btn-sm">🔊 听发音</button>
+            </div>
+            <div id="spellHintBox" class="spell-hint-txt"></div>
+          </div>
+
+          <div id="letterSlots" class="letter-slots"></div>
+
+          <div class="spell-input-wrap">
+            <input
+              id="spellInput"
+              type="text"
+              autocomplete="off"
+              autocorrect="off"
+              autocapitalize="none"
+              spellcheck="false"
+              placeholder="输入英文单词，按 Enter 提交..."
+              class="input-field spell-main-input"
+            />
+            <div class="btn-center">
+              <button id="spellCheckBtn" class="btn btn-primary">提交检查 (Enter)</button>
+              <button id="spellPeekBtn" class="btn">提示一个字母</button>
+              <button id="spellShowAnsBtn" class="btn btn-outline">直接看答案</button>
+              <button id="spellNextBtn" class="btn btn-success hidden">下一题 →</button>
+            </div>
+          </div>
+
+          <div id="spellFeedback" class="feedback-box hidden"></div>
+        </div>
+      </div>
+    </main>
+
+    <!-- TAB 3: 整句挖空默写 -->
+    <main id="tab-cloze" class="tab-panel hidden">
+      <div class="card">
+        <div class="panel-top">
+          <div>
+            <div style="font-size:16px; font-weight:700;">整段默写训练（把空填满，检查是否一字不错）</div>
+            <div style="font-size:12px; color:var(--muted); margin-top:2px;">假设本题主题 [XX] 为 <strong>AI</strong>（单数）且对象为 <strong>students</strong></div>
+          </div>
+          <div class="control-pair">
+            <select id="clozeTailSelect" class="select-field">
+              <option value="0">尾巴1：通用类 (why people need it)</option>
+              <option value="1">尾巴2：利弊类 (the pros and cons of it)</option>
+              <option value="2">尾巴3：科技类 (how to use it properly)</option>
+              <option value="3">尾巴4：目标类 (how to achieve this goal)</option>
+            </select>
+            <select id="clozeDifficulty" class="select-field">
+              <option value="medium">标准难度（挖高频难词）</option>
+              <option value="hard">考场全盲（几乎全挖）</option>
+            </select>
+          </div>
+        </div>
+
+        <div id="clozeSentenceBox" class="cloze-box"></div>
+
+        <div class="cloze-actions">
+          <div class="filter-group">
+            <button id="clozeCheckBtn" class="btn btn-primary">全部批改</button>
+            <button id="clozeHintBtn" class="btn">显示首字母提示</button>
+            <button id="clozeResetBtn" class="btn btn-outline">清空重填</button>
+          </div>
+          <div id="clozeScore" style="font-size:14px; font-weight:700;"></div>
+        </div>
+      </div>
+    </main>
+
+    <!-- TAB 4: 真题套用实战 -->
+    <main id="tab-apply" class="tab-panel hidden">
+      <div class="card">
+        <div class="panel-top">
+          <div>
+            <div style="font-size:16px; font-weight:700;">四级真题套用检测（不认识整句也能套对）</div>
+            <div style="font-size:12px; color:var(--muted); margin-top:2px;">先读蓝色高亮的题眼关键词，再在下面点选正确的拼装块</div>
+          </div>
+          <select id="applyCaseSelect" class="select-field"></select>
+        </div>
+
+        <div class="prompt-box">
+          <div style="font-size:12px; font-weight:700; color:var(--muted); margin-bottom:6px;">考卷英文原题（已标出题眼）：</div>
+          <div id="applyPromptEn"></div>
+          <button id="applyToggleZhBtn" class="link-btn">点击查看中文翻译（建议先自己猜）</button>
+          <p id="applyPromptZh" class="hidden" style="margin:8px 0 0; font-size:13px; color:var(--muted);"></p>
+        </div>
+
+        <div class="apply-grid">
+          <div class="field-group">
+            <label class="field-label">1. 填入核心主题 [XX]（直接抄题干关键词）</label>
+            <select id="applySelXX" class="select-field" style="padding:10px;"></select>
+          </div>
+          <div class="field-group">
+            <label class="field-label">2. 单复数匹配（看 [XX] 是单数还是复数）</label>
+            <select id="applySelVerb" class="select-field" style="padding:10px;">
+              <option value="becomes">becomes（单数 / 动名词 -ing）</option>
+              <option value="become">become（复数名词）</option>
+            </select>
+          </div>
+          <div class="field-group">
+            <label class="field-label">3. 面向群体（二选一）</label>
+            <select id="applySelGroup" class="select-field" style="padding:10px;">
+              <option value="people">people（大众/人们）</option>
+              <option value="students">students（学生）</option>
+            </select>
+          </div>
+          <div class="field-group">
+            <label class="field-label">4. 切入点尾巴（4 选 1）</label>
+            <select id="applySelTail" class="select-field" style="padding:10px;">
+              <option value="why people need it">why people need it（通用类）</option>
+              <option value="the pros and cons of it">the pros and cons of it（利弊争议类）</option>
+              <option value="the pros and cons of them">the pros and cons of them（利弊争议类-复数代词）</option>
+              <option value="how to use it properly">how to use it properly（科技/AI/工具类）</option>
+              <option value="how to achieve this goal">how to achieve this goal（倡议/目标类）</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="preview-box">
+          <div style="display:flex; justify-content:space-between; align-items:center; gap:8px;">
+            <span style="font-size:12px; font-weight:700; color:var(--muted);">实时拼出的你的开头段：</span>
+            <button id="applySpeakPreviewBtn" class="btn btn-sm">🔊 朗读预览</button>
+          </div>
+          <p id="applyPreview" class="preview-text"></p>
+        </div>
+
+        <div style="margin-top:14px;">
+          <button id="applyCheckBtn" class="btn btn-primary">检查我套得对不对</button>
+        </div>
+
+        <div id="applyResult" class="feedback-box hidden" style="text-align:left;"></div>
+      </div>
+    </main>
+
+    <div class="footer-note">学习进度自动保存在当前浏览器本地 · 支持电脑与手机访问</div>
+  </div>
+
+  <script>
+    const WORDS = [
+      {
+        id: 'rapid',
+        word: 'rapid',
+        syllables: ['ra', 'pid'],
+        phonetic: '/ˈræpɪd/',
+        meaning: '快速的，迅速的',
+        hard: false,
+        tip: '联想记忆：rap（说唱语速很快）+ id = 快速的。固定搭配 rapid development（快速发展）。',
+        phrase: 'the rapid development'
+      },
+      {
+        id: 'development',
+        word: 'development',
+        syllables: ['de', 'vel', 'op', 'ment'],
+        phonetic: '/dɪˈveləpmənt/',
+        meaning: '发展',
+        hard: true,
+        tip: '【高频坑】先记动词 develop（没有 e 结尾！），直接加名词后缀 -ment，千万别多写成 developement！',
+        phrase: 'development of society'
+      },
+      {
+        id: 'society',
+        word: 'society',
+        syllables: ['so', 'cie', 'ty'],
+        phonetic: '/səˈsaɪəti/',
+        meaning: '社会',
+        hard: true,
+        tip: '【高频坑】中间是 cie 三个字母，容易漏掉 i 或把 ie 写反。记口诀：so + cie + ty。',
+        phrase: 'development of society'
+      },
+      {
+        id: 'becomes',
+        word: 'becomes',
+        syllables: ['be', 'comes'],
+        phonetic: '/bɪˈkʌmz/',
+        meaning: '变得（单数第三人称）',
+        hard: false,
+        tip: 'be + come + s。记住：主语是单数或 -ing 短语用 becomes，复数用 become。',
+        phrase: 'becomes increasingly important'
+      },
+      {
+        id: 'increasingly',
+        word: 'increasingly',
+        syllables: ['in', 'creas', 'ing', 'ly'],
+        phonetic: '/ɪnˈkriːsɪŋli/',
+        meaning: '越来越，日益',
+        hard: true,
+        tip: '【长词拆解】in（向内）+ crease（增长，去 e 加 ing）+ ly（副词）。注意中间是 ea 发 /iː/，别写成 ee！',
+        phrase: 'increasingly important'
+      },
+      {
+        id: 'important',
+        word: 'important',
+        syllables: ['im', 'por', 'tant'],
+        phonetic: '/ɪmˈpɔːtnt/',
+        meaning: '重要的',
+        hard: true,
+        tip: '【高频坑】开头是 im-（不是 in-），结尾是 -tant（不是 -tent）。分三段：im · por · tant。',
+        phrase: 'increasingly important'
+      },
+      {
+        id: 'students',
+        word: 'students',
+        syllables: ['stu', 'dents'],
+        phonetic: '/ˈstjuːdnts/',
+        meaning: '学生们',
+        hard: false,
+        tip: '注意结尾一般加 s 表示泛指学生群体（for students）。',
+        phrase: 'for students'
+      },
+      {
+        id: 'quite',
+        word: 'quite',
+        syllables: ['quite'],
+        phonetic: '/kwaɪt/',
+        meaning: '相当，十分',
+        hard: true,
+        tip: '【致命混淆】e 在最后是 quite（相当）；e 在 t 前面是 quiet（安静的）。记住“很(quite)到最后”。',
+        phrase: 'It is quite natural'
+      },
+      {
+        id: 'natural',
+        word: 'natural',
+        syllables: ['na', 'tu', 'ral'],
+        phonetic: '/ˈnætʃrəl/',
+        meaning: '自然的，合乎常理的',
+        hard: false,
+        tip: '由 nature（自然）去 e 加 -al 变成形容词。三音节拼读：na · tu · ral。',
+        phrase: 'quite natural for us'
+      },
+      {
+        id: 'ponder',
+        word: 'ponder',
+        syllables: ['pon', 'der'],
+        phonetic: '/ˈpɒndə(r)/',
+        meaning: '思考，沉思',
+        hard: false,
+        tip: '联想记忆：pond（池塘）+ er → 站在池塘边发呆思考。高级替换词，比 think 加分！',
+        phrase: 'for us to ponder'
+      },
+      {
+        id: 'pros',
+        word: 'pros',
+        syllables: ['pros'],
+        phonetic: '/prəʊz/',
+        meaning: '赞成方面，好处（常与 cons 连用）',
+        hard: false,
+        tip: 'pro（支持/正面）+ s。固定短语：the pros and cons of it（它的利与弊）。',
+        phrase: 'the pros and cons of it'
+      },
+      {
+        id: 'cons',
+        word: 'cons',
+        syllables: ['cons'],
+        phonetic: '/kɒnz/',
+        meaning: '反对方面，弊端',
+        hard: false,
+        tip: 'con（反对/负面）+ s。和 pros 一起背：pros and cons（利与弊）。',
+        phrase: 'the pros and cons of it'
+      },
+      {
+        id: 'properly',
+        word: 'properly',
+        syllables: ['pro', 'per', 'ly'],
+        phonetic: '/ˈprɒpəli/',
+        meaning: '正确地，恰当地',
+        hard: true,
+        tip: '【双 p 别少写，er 别写成 or】pro · per + ly。科技/AI 类话题必用：use it properly（正确使用它）。',
+        phrase: 'how to use it properly'
+      },
+      {
+        id: 'achieve',
+        word: 'achieve',
+        syllables: ['a', 'chieve'],
+        phonetic: '/əˈtʃiːv/',
+        meaning: '实现，达到',
+        hard: true,
+        tip: '【高频坑】一定是 i 在 e 前面（chieve），不是 acheive！口诀：a + ch + ie + ve。',
+        phrase: 'how to achieve this goal'
+      }
+    ];
+
+    const STORAGE_KEY = 'cet4_module1_trainer_pages_v1';
+    let state = {
+      mastered: [],
+      mistakes: [],
+      activeTab: 'cards',
+      cardFilter: 'all',
+      theme: null
+    };
+
+    try {
+      const saved = JSON.parse(localStorage.getItem(STORAGE_KEY));
+      if (saved && typeof saved === 'object') {
+        state = { ...state, ...saved };
+      }
+    } catch (e) {}
+
+    function applyTheme() {
+      const prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+      const isDark = state.theme ? state.theme === 'dark' : prefersDark;
+      document.documentElement.classList.toggle('dark', isDark);
+    }
+    applyTheme();
+
+    document.getElementById('themeToggleBtn').addEventListener('click', () => {
+      const currentlyDark = document.documentElement.classList.contains('dark');
+      state.theme = currentlyDark ? 'light' : 'dark';
+      applyTheme();
+      saveState();
+    });
+
+    function saveState() {
+      try {
+        localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+      } catch (e) {}
+      updateStats();
+    }
+
+    function updateStats() {
+      document.getElementById('masteredCount').textContent = state.mastered.length;
+      document.getElementById('mistakeCount').textContent = state.mistakes.length;
+    }
+
+    function markMastered(id) {
+      if (!state.mastered.includes(id)) state.mastered.push(id);
+      state.mistakes = state.mistakes.filter(m => m !== id);
+      saveState();
+    }
+
+    function markMistake(id) {
+      if (!state.mistakes.includes(id)) state.mistakes.push(id);
+      state.mastered = state.mastered.filter(m => m !== id);
+      saveState();
+    }
+
+    function speakText(text) {
+      if (!('speechSynthesis' in window)) return;
+      try {
+        window.speechSynthesis.cancel();
+        const utter = new SpeechSynthesisUtterance(text);
+        utter.lang = 'en-US';
+        utter.rate = 0.9;
+        window.speechSynthesis.speak(utter);
+      } catch (e) {}
+    }
+
+    document.getElementById('speakFullBtn').addEventListener('click', () => {
+      speakText('With the rapid development of society, AI becomes increasingly important for students. It is quite natural for us to ponder how to use it properly.');
+    });
+
+    document.getElementById('toggleRefBtn').addEventListener('click', (e) => {
+      const box = document.getElementById('refContent');
+      const isHidden = box.classList.toggle('hidden');
+      e.target.textContent = isHidden ? '展开' : '收起';
+    });
+
+    function switchTab(tabName) {
+      state.activeTab = tabName;
+      document.querySelectorAll('.tab-panel').forEach(p => p.classList.add('hidden'));
+      document.getElementById(`tab-${tabName}`).classList.remove('hidden');
+
+      document.querySelectorAll('.tab-btn').forEach(btn => {
+        const active = btn.dataset.tab === tabName;
+        btn.className = active ? 'btn btn-primary tab-btn' : 'btn tab-btn';
+      });
+
+      if (tabName === 'cards') renderCards();
+      if (tabName === 'spell') initSpellSession();
+      if (tabName === 'cloze') renderCloze();
+      if (tabName === 'apply') renderApplyCase();
+    }
+
+    document.querySelectorAll('.tab-btn').forEach(btn => {
+      btn.addEventListener('click', () => switchTab(btn.dataset.tab));
+    });
+
+    function renderCards() {
+      document.querySelectorAll('.filter-btn').forEach(btn => {
+        const active = btn.dataset.filter === state.cardFilter;
+        btn.className = active ? 'btn btn-sm btn-primary filter-btn' : 'btn btn-sm filter-btn';
+      });
+
+      let list = WORDS;
+      if (state.cardFilter === 'hard') list = WORDS.filter(w => w.hard);
+      if (state.cardFilter === 'mistakes') list = WORDS.filter(w => state.mistakes.includes(w.id));
+
+      const grid = document.getElementById('cardsGrid');
+      if (list.length === 0) {
+        grid.innerHTML = `<div class="card" style="grid-column:1/-1; text-align:center; color:var(--muted); font-size:14px;">当前筛选下没有单词（你的错题本还是空的哦）。</div>`;
+        return;
+      }
+
+      grid.innerHTML = list.map(w => {
+        const isMastered = state.mastered.includes(w.id);
+        const isMistake = state.mistakes.includes(w.id);
+        const sylHtml = w.syllables
+          .map((s, idx) => `<span class="syl-${idx % 4}">${s}</span>`)
+          .join('<span class="syl-dot">·</span>');
+
+        return `
+          <div class="word-card">
+            <div>
+              <div class="word-top">
+                <div>
+                  <div class="syllables">${sylHtml}</div>
+                  <div class="phonetic-line">
+                    <span class="phonetic">${w.phonetic}</span>
+                    <span class="meaning">${w.meaning}</span>
+                  </div>
+                </div>
+                <div class="tag-row">
+                  ${w.hard ? '<span class="tag tag-hard">易拼错</span>' : ''}
+                  ${isMastered ? '<span class="tag tag-mastered">已掌握</span>' : ''}
+                  ${isMistake ? '<span class="tag tag-mistake">错题</span>' : ''}
+                  <button onclick="speakText('${w.word}')" class="btn btn-sm" title="朗读单词">🔊</button>
+                </div>
+              </div>
+              <div class="tip-box" style="margin-top:10px;">💡 ${w.tip}</div>
+            </div>
+            <div class="try-row">
+              <input
+                type="text"
+                data-word="${w.word}"
+                data-id="${w.id}"
+                placeholder="遮住试拼: ${w.word[0]}___"
+                autocomplete="off"
+                autocorrect="off"
+                autocapitalize="none"
+                spellcheck="false"
+                class="input-field try-input card-try-input"
+              />
+              <span class="try-status"></span>
+            </div>
+          </div>
+        `;
+      }).join('');
+
+      document.querySelectorAll('.card-try-input').forEach(inp => {
+        inp.addEventListener('input', (e) => {
+          const target = e.target.dataset.word.toLowerCase();
+          const id = e.target.dataset.id;
+          const val = e.target.value.trim().toLowerCase();
+          const statusEl = e.target.nextElementSibling;
+          if (!val) {
+            statusEl.textContent = '';
+            return;
+          }
+          if (val === target) {
+            statusEl.textContent = '✓ 对啦';
+            statusEl.style.color = 'var(--green)';
+            markMastered(id);
+          } else if (target.startsWith(val)) {
+            statusEl.textContent = '继续...';
+            statusEl.style.color = 'var(--muted)';
+          } else {
+            statusEl.textContent = '✗ 有错';
+            statusEl.style.color = 'var(--red)';
+          }
+        });
+      });
+    }
+
+    document.querySelectorAll('.filter-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        state.cardFilter = btn.dataset.filter;
+        renderCards();
+      });
+    });
+
+    // 拼写闯关
+    let spellQueue = [];
+    let spellIdx = 0;
+    let spellStreak = 0;
+    let spellRevealedCount = 0;
+    let spellSolvedCurrent = false;
+
+    function initSpellSession() {
+      const scope = document.getElementById('spellScope').value;
+      let pool = [...WORDS];
+      if (scope === 'hard') pool = WORDS.filter(w => w.hard);
+      if (scope === 'mistakes') pool = WORDS.filter(w => state.mistakes.includes(w.id));
+
+      if (pool.length === 0) {
+        document.getElementById('spellEmptyMsg').classList.remove('hidden');
+        document.getElementById('spellArena').classList.add('hidden');
+        return;
+      }
+
+      document.getElementById('spellEmptyMsg').classList.add('hidden');
+      document.getElementById('spellArena').classList.remove('hidden');
+
+      spellQueue = pool.sort(() => Math.random() - 0.5);
+      spellIdx = 0;
+      loadSpellQuestion();
+    }
+
+    function getHintString(wordObj) {
+      const level = document.getElementById('spellHintLevel').value;
+      if (level === 'none') return `共 ${wordObj.word.length} 个字母`;
+      if (level === 'first') return `${wordObj.word[0]} ` + '_ '.repeat(wordObj.word.length - 1);
+      return wordObj.syllables.map(s => s[0] + '_'.repeat(Math.max(0, s.length - 1))).join(' · ');
+    }
+
+    function renderLetterSlots(targetWord, typed, revealedCount) {
+      const box = document.getElementById('letterSlots');
+      box.innerHTML = targetWord.split('').map((ch, i) => {
+        const typedCh = typed[i];
+        let display = '_';
+        let cls = 'slot-cell';
+        if (typedCh !== undefined) {
+          display = typedCh;
+          cls += typedCh.toLowerCase() === ch.toLowerCase() ? ' slot-ok' : ' slot-err';
+        } else if (i < revealedCount) {
+          display = ch;
+          cls += ' slot-peek';
+        }
+        return `<span class="${cls}">${display}</span>`;
+      }).join('');
+    }
+
+    function loadSpellQuestion() {
+      const current = spellQueue[spellIdx];
+      spellRevealedCount = 0;
+      spellSolvedCurrent = false;
+
+      document.getElementById('spellIndex').textContent = spellIdx + 1;
+      document.getElementById('spellTotal').textContent = spellQueue.length;
+      document.getElementById('spellStreak').textContent = spellStreak;
+      document.getElementById('spellMeaning').textContent = current.meaning;
+      document.getElementById('spellPhonetic').textContent = current.phonetic;
+      document.getElementById('spellHintBox').textContent = getHintString(current);
+
+      const inp = document.getElementById('spellInput');
+      inp.value = '';
+      inp.disabled = false;
+      inp.focus();
+
+      document.getElementById('spellFeedback').classList.add('hidden');
+      document.getElementById('spellNextBtn').classList.add('hidden');
+      document.getElementById('spellCheckBtn').classList.remove('hidden');
+
+      renderLetterSlots(current.word, '', 0);
+    }
+
+    document.getElementById('spellScope').addEventListener('change', initSpellSession);
+    document.getElementById('spellHintLevel').addEventListener('change', () => {
+      if (spellQueue[spellIdx]) {
+        document.getElementById('spellHintBox').textContent = getHintString(spellQueue[spellIdx]);
+      }
+    });
+
+    document.getElementById('spellSpeakBtn').addEventListener('click', () => {
+      if (spellQueue[spellIdx]) speakText(spellQueue[spellIdx].word);
+    });
+
+    document.getElementById('spellInput').addEventListener('input', (e) => {
+      const current = spellQueue[spellIdx];
+      if (!current) return;
+      renderLetterSlots(current.word, e.target.value.trim(), spellRevealedCount);
+    });
+
+    function submitSpellAnswer() {
+      if (spellSolvedCurrent) {
+        nextSpellQuestion();
+        return;
+      }
+      const current = spellQueue[spellIdx];
+      const inp = document.getElementById('spellInput');
+      const val = inp.value.trim().toLowerCase();
+      const fb = document.getElementById('spellFeedback');
+      fb.classList.remove('hidden');
+
+      if (val === current.word.toLowerCase()) {
+        spellSolvedCurrent = true;
+        spellStreak += 1;
+        markMastered(current.id);
+        speakText(current.word);
+        fb.className = 'feedback-box fb-ok';
+        fb.innerHTML = `<strong>✓ 拼写完全正确！</strong> 记住搭配：<code>${current.phrase}</code>`;
+        inp.disabled = true;
+        document.getElementById('spellCheckBtn').classList.add('hidden');
+        document.getElementById('spellNextBtn').classList.remove('hidden');
+      } else {
+        spellStreak = 0;
+        markMistake(current.id);
+        fb.className = 'feedback-box fb-err';
+        fb.innerHTML = `<strong>✗ 还差一点</strong>（已加入错题本）。提示：${current.tip}`;
+      }
+      document.getElementById('spellStreak').textContent = spellStreak;
+    }
+
+    function nextSpellQuestion() {
+      spellIdx = (spellIdx + 1) % spellQueue.length;
+      if (spellIdx === 0) spellQueue = spellQueue.sort(() => Math.random() - 0.5);
+      loadSpellQuestion();
+    }
+
+    document.getElementById('spellCheckBtn').addEventListener('click', submitSpellAnswer);
+    document.getElementById('spellNextBtn').addEventListener('click', nextSpellQuestion);
+    document.getElementById('spellInput').addEventListener('keydown', (e) => {
+      if (e.key === 'Enter') submitSpellAnswer();
+    });
+
+    document.getElementById('spellPeekBtn').addEventListener('click', () => {
+      const current = spellQueue[spellIdx];
+      if (!current || spellSolvedCurrent) return;
+      spellRevealedCount = Math.min(current.word.length, spellRevealedCount + 1);
+      const inp = document.getElementById('spellInput');
+      inp.value = current.word.slice(0, spellRevealedCount);
+      inp.focus();
+      renderLetterSlots(current.word, inp.value, spellRevealedCount);
+    });
+
+    document.getElementById('spellShowAnsBtn').addEventListener('click', () => {
+      const current = spellQueue[spellIdx];
+      if (!current) return;
+      spellStreak = 0;
+      markMistake(current.id);
+      document.getElementById('spellStreak').textContent = 0;
+      const inp = document.getElementById('spellInput');
+      inp.value = current.word;
+      inp.disabled = true;
+      spellSolvedCurrent = true;
+      renderLetterSlots(current.word, current.word, current.word.length);
+      speakText(current.word);
+
+      const fb = document.getElementById('spellFeedback');
+      fb.classList.remove('hidden');
+      fb.className = 'feedback-box fb-warn';
+      fb.innerHTML = `正确答案是 <strong>${current.word}</strong>（${current.syllables.join(' · ')}）。${current.tip}`;
+
+      document.getElementById('spellCheckBtn').classList.add('hidden');
+      document.getElementById('spellNextBtn').classList.remove('hidden');
+    });
+
+    // 整句挖空默写
+    let clozeShowFirstHint = false;
+
+    function getClozeTokens() {
+      const tailIdx = Number(document.getElementById('clozeTailSelect').value);
+      const diff = document.getElementById('clozeDifficulty').value;
+
+      const tailTokensList = [
+        [
+          { t: 'why', blank: diff === 'hard' },
+          { t: 'people', blank: diff === 'hard' },
+          { t: 'need', blank: true },
+          { t: 'it.', blank: false }
+        ],
+        [
+          { t: 'the', blank: false },
+          { t: 'pros', blank: true },
+          { t: 'and', blank: false },
+          { t: 'cons', blank: true },
+          { t: 'of', blank: false },
+          { t: 'it.', blank: false }
+        ],
+        [
+          { t: 'how', blank: false },
+          { t: 'to', blank: false },
+          { t: 'use', blank: diff === 'hard' },
+          { t: 'it', blank: false },
+          { t: 'properly.', blank: true, clean: 'properly', suffix: '.' }
+        ],
+        [
+          { t: 'how', blank: false },
+          { t: 'to', blank: false },
+          { t: 'achieve', blank: true },
+          { t: 'this', blank: diff === 'hard' },
+          { t: 'goal.', blank: true, clean: 'goal', suffix: '.' }
+        ]
+      ];
+
+      return [
+        { t: 'With', blank: false },
+        { t: 'the', blank: false },
+        { t: 'rapid', blank: diff === 'hard' },
+        { t: 'development', blank: true },
+        { t: 'of', blank: false },
+        { t: 'society,', blank: true, clean: 'society', suffix: ',' },
+        { t: 'AI', blank: false, badge: true },
+        { t: 'becomes', blank: true },
+        { t: 'increasingly', blank: true },
+        { t: 'important', blank: true },
+        { t: 'for', blank: false },
+        { t: 'students.', blank: diff === 'hard', clean: 'students', suffix: '.' },
+        { t: 'It', blank: false },
+        { t: 'is', blank: false },
+        { t: 'quite', blank: true },
+        { t: 'natural', blank: true },
+        { t: 'for', blank: false },
+        { t: 'us', blank: false },
+        { t: 'to', blank: false },
+        { t: 'ponder', blank: true },
+        ...tailTokensList[tailIdx]
+      ];
+    }
+
+    function renderCloze() {
+      const tokens = getClozeTokens();
+      const box = document.getElementById('clozeSentenceBox');
+      document.getElementById('clozeScore').textContent = '';
+
+      box.innerHTML = tokens.map(tok => {
+        if (!tok.blank) {
+          if (tok.badge) return `<span class="hl-slot">${tok.t}</span>`;
+          return `<span>${tok.t}</span>`;
+        }
+        const ans = tok.clean || tok.t;
+        const suffix = tok.suffix || '';
+        const widthCh = Math.max(6, ans.length + 2);
+        const placeholder = clozeShowFirstHint ? `${ans[0]}${'_'.repeat(ans.length - 1)}` : `${ans.length}字母`;
+
+        return `<span class="cloze-wrap">
+          <input
+            type="text"
+            data-answer="${ans}"
+            placeholder="${placeholder}"
+            autocomplete="off"
+            autocorrect="off"
+            autocapitalize="none"
+            spellcheck="false"
+            style="width:${widthCh}ch"
+            class="cloze-input"
+          />${suffix ? `<span>${suffix}</span>` : ''}
+          <span class="cloze-ans-tip hidden"></span>
+        </span>`;
+      }).join(' ');
+    }
+
+    document.getElementById('clozeTailSelect').addEventListener('change', renderCloze);
+    document.getElementById('clozeDifficulty').addEventListener('change', renderCloze);
+
+    document.getElementById('clozeHintBtn').addEventListener('click', (e) => {
+      clozeShowFirstHint = !clozeShowFirstHint;
+      e.target.textContent = clozeShowFirstHint ? '隐藏首字母提示' : '显示首字母提示';
+      document.querySelectorAll('#clozeSentenceBox .cloze-input').forEach(inp => {
+        const ans = inp.dataset.answer;
+        inp.placeholder = clozeShowFirstHint ? `${ans[0]}${'_'.repeat(ans.length - 1)}` : `${ans.length}字母`;
+      });
+    });
+
+    document.getElementById('clozeResetBtn').addEventListener('click', renderCloze);
+
+    document.getElementById('clozeCheckBtn').addEventListener('click', () => {
+      const inputs = document.querySelectorAll('#clozeSentenceBox .cloze-input');
+      let correct = 0;
+      inputs.forEach(inp => {
+        const ans = inp.dataset.answer.toLowerCase();
+        const val = inp.value.trim().toLowerCase();
+        const tipEl = inp.parentElement.querySelector('.cloze-ans-tip');
+
+        if (val === ans) {
+          correct += 1;
+          inp.className = 'cloze-input ok';
+          tipEl.classList.add('hidden');
+        } else {
+          inp.className = 'cloze-input err';
+          tipEl.textContent = `(${inp.dataset.answer})`;
+          tipEl.classList.remove('hidden');
+        }
+      });
+
+      const scoreEl = document.getElementById('clozeScore');
+      if (correct === inputs.length) {
+        scoreEl.innerHTML = `<span style="color:var(--green);">🎉 全对！${correct} / ${inputs.length}，模块一已稳拿！</span>`;
+      } else {
+        scoreEl.innerHTML = `<span style="color:var(--amber);">答对 ${correct} / ${inputs.length} 个空，标红处括号内为正确拼写。</span>`;
+      }
+    });
+
+    // 真题套用实战
+    const APPLY_CASES = [
+      {
+        title: '真题 1：大学图书馆是否应向公众开放（2024年6月四级）',
+        promptHtml: 'Suppose your university is seeking students\' opinions <strong style="color:var(--sky);">on whether university libraries should be open to the public</strong>. You are now to write an essay to express your view.',
+        promptZh: '假设你的大学正在就“大学图书馆是否应该向公众开放”征求学生的意见，请你写一篇文章表达你的观点。',
+        xxOptions: [
+          { val: 'university libraries', label: 'university libraries（直接抄复数名词）' },
+          { val: 'opening university libraries to the public', label: 'opening university libraries to the public（动名词短语）' }
+        ],
+        check(xx, verb, group, tail) {
+          const errs = [];
+          const isPlural = xx === 'university libraries';
+          if (isPlural && verb !== 'become') errs.push('主语 university libraries 是复数，动词应该用 become 而不是 becomes！');
+          if (!isPlural && verb !== 'becomes') errs.push('主语是 opening... 动名词短语（视为单数），动词应该用 becomes！');
+          if (!tail.startsWith('the pros and cons')) errs.push('题干有 "whether ... should ..."（是否应该），属于【利弊争议类】，尾巴应选 the pros and cons of ...');
+          if (isPlural && tail === 'the pros and cons of it') errs.push('小细节：前面 university libraries 是复数，尾巴选 the pros and cons of them 会更严谨！');
+          return errs;
+        }
+      },
+      {
+        title: '真题 2：大学生在学习中使用 AI 工具（科技工具类）',
+        promptHtml: 'Suppose your university is holding a forum <strong style="color:var(--sky);">on the use of AI tools in college study</strong>. You are now to write an essay to share your thoughts.',
+        promptZh: '假设你的大学正在举办一场关于“在大学学习中使用 AI 工具”的论坛，请你写一篇文章分享你的看法。',
+        xxOptions: [
+          { val: 'AI tools', label: 'AI tools（复数名词）' },
+          { val: 'using AI tools', label: 'using AI tools（动名词短语）' }
+        ],
+        check(xx, verb, group, tail) {
+          const errs = [];
+          const isPlural = xx === 'AI tools';
+          if (isPlural && verb !== 'become') errs.push('AI tools 是复数，动词要用 become！');
+          if (!isPlural && verb !== 'becomes') errs.push('using AI tools 是动名词短语，动词要用 becomes！');
+          if (group !== 'students') errs.push('提示：题目讲 college study（大学学习），群体选 students 更贴切！');
+          if (tail !== 'how to use it properly' && tail !== 'the pros and cons of it') errs.push('题干关键词是 AI tools（科技/工具类），最推荐选 how to use it properly！');
+          return errs;
+        }
+      },
+      {
+        title: '真题 3：培养良好的学习习惯（倡议/目标类）',
+        promptHtml: 'Suppose the university newspaper is inviting submissions <strong style="color:var(--sky);">on the importance of developing good learning habits</strong>.',
+        promptZh: '假设校报正在征稿，主题是“培养良好学习习惯的重要性”。',
+        xxOptions: [
+          { val: 'good learning habits', label: 'good learning habits（复数名词）' },
+          { val: 'developing good learning habits', label: 'developing good learning habits（动名词短语）' }
+        ],
+        check(xx, verb, group, tail) {
+          const errs = [];
+          const isPlural = xx === 'good learning habits';
+          if (isPlural && verb !== 'become') errs.push('good learning habits 是复数，动词要用 become！');
+          if (!isPlural && verb !== 'becomes') errs.push('developing... 是动名词短语，动词要用 becomes！');
+          if (group !== 'students') errs.push('提示：校报 + 学习习惯，选 students 更贴切！');
+          if (tail !== 'why people need it' && tail !== 'how to achieve this goal') errs.push('这题问“重要性/培养目标”，建议选通用类 why people need it 或目标类 how to achieve this goal！');
+          return errs;
+        }
+      }
+    ];
+
+    function initApplySelect() {
+      const sel = document.getElementById('applyCaseSelect');
+      sel.innerHTML = APPLY_CASES.map((c, i) => `<option value="${i}">${c.title}</option>`).join('');
+      sel.addEventListener('change', renderApplyCase);
+    }
+
+    function renderApplyCase() {
+      const idx = Number(document.getElementById('applyCaseSelect').value || 0);
+      const c = APPLY_CASES[idx];
+      document.getElementById('applyPromptEn').innerHTML = c.promptHtml;
+      document.getElementById('applyPromptZh').textContent = c.promptZh;
+      document.getElementById('applyPromptZh').classList.add('hidden');
+      document.getElementById('applyResult').classList.add('hidden');
+
+      const xxSel = document.getElementById('applySelXX');
+      xxSel.innerHTML = c.xxOptions.map(o => `<option value="${o.val}">${o.label}</option>`).join('');
+      updateApplyPreview();
+    }
+
+    function buildApplyParagraph() {
+      const xx = document.getElementById('applySelXX').value;
+      const verb = document.getElementById('applySelVerb').value;
+      const group = document.getElementById('applySelGroup').value;
+      const tail = document.getElementById('applySelTail').value;
+      return `With the rapid development of society, ${xx} ${verb} increasingly important for ${group}. It is quite natural for us to ponder ${tail}.`;
+    }
+
+    function updateApplyPreview() {
+      const xx = document.getElementById('applySelXX').value;
+      const verb = document.getElementById('applySelVerb').value;
+      const group = document.getElementById('applySelGroup').value;
+      const tail = document.getElementById('applySelTail').value;
+
+      document.getElementById('applyPreview').innerHTML =
+        `With the rapid development of society, <span style="color:var(--amber); font-weight:700;">${xx}</span> <span style="color:var(--sky); font-weight:700;">${verb}</span> increasingly important for <span style="color:var(--sky); font-weight:700;">${group}</span>. It is quite natural for us to ponder <span style="color:var(--green); font-weight:700;">${tail}</span>.`;
+    }
+
+    ['applySelXX', 'applySelVerb', 'applySelGroup', 'applySelTail'].forEach(id => {
+      document.getElementById(id).addEventListener('change', updateApplyPreview);
+    });
+
+    document.getElementById('applyToggleZhBtn').addEventListener('click', () => {
+      document.getElementById('applyPromptZh').classList.toggle('hidden');
+    });
+
+    document.getElementById('applySpeakPreviewBtn').addEventListener('click', () => {
+      speakText(buildApplyParagraph());
+    });
+
+    document.getElementById('applyCheckBtn').addEventListener('click', () => {
+      const idx = Number(document.getElementById('applyCaseSelect').value || 0);
+      const c = APPLY_CASES[idx];
+      const xx = document.getElementById('applySelXX').value;
+      const verb = document.getElementById('applySelVerb').value;
+      const group = document.getElementById('applySelGroup').value;
+      const tail = document.getElementById('applySelTail').value;
+
+      const errs = c.check(xx, verb, group, tail);
+      const resEl = document.getElementById('applyResult');
+      resEl.classList.remove('hidden');
+
+      if (errs.length === 0) {
+        resEl.className = 'feedback-box fb-ok';
+        resEl.style.textAlign = 'left';
+        resEl.innerHTML = '<strong>🎉 套用完美！</strong> 单复数、群体和切入点尾巴全部匹配，考场可以直接抄上去！';
+        speakText(buildApplyParagraph());
+      } else {
+        resEl.className = 'feedback-box fb-err';
+        resEl.style.textAlign = 'left';
+        resEl.innerHTML = '<strong>还有一点小瑕疵，按下面改一下就完美了：</strong><ul style="margin:6px 0 0; padding-left:20px;">' +
+          errs.map(e => `<li>${e}</li>`).join('') + '</ul>';
+      }
+    });
+
+    updateStats();
+    initApplySelect();
+    switchTab('cards');
+  </script>
+</body>
+</html>
