@@ -660,6 +660,111 @@
       color: var(--muted);
       padding-top: 6px;
     }
+
+    /* 分句反复背写 */
+    .chunk-pills {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 14px;
+    }
+
+    .chunk-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 7px 12px;
+      border-radius: 10px;
+      border: 1px solid var(--border);
+      background: var(--surface);
+      color: var(--text);
+      font-size: 13px;
+      font-weight: 600;
+      cursor: pointer;
+    }
+
+    .chunk-pill.active {
+      background: var(--primary);
+      color: var(--primary-fg);
+      border-color: var(--primary);
+    }
+
+    .chunk-pill-count {
+      font-size: 12px;
+      padding: 1px 6px;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.22);
+    }
+
+    .chunk-pill:not(.active) .chunk-pill-count {
+      background: var(--card);
+      color: var(--muted);
+    }
+
+    .chunk-pill.done:not(.active) .chunk-pill-count {
+      background: var(--green-bg);
+      color: var(--green);
+    }
+
+    .chunk-stage {
+      margin-top: 16px;
+      padding: 18px;
+      border-radius: 14px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .chunk-en {
+      font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+      font-size: 20px;
+      font-weight: 700;
+      line-height: 1.5;
+      transition: filter 0.18s ease;
+    }
+
+    .chunk-en.is-masked {
+      filter: blur(9px);
+      user-select: none;
+    }
+
+    .wf-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      min-height: 28px;
+    }
+
+    .wf-tok {
+      font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+      font-size: 14px;
+      padding: 3px 8px;
+      border-radius: 7px;
+      border: 1px solid var(--border);
+      background: var(--card);
+      color: var(--muted);
+    }
+
+    .wf-tok.ok {
+      border-color: var(--green);
+      background: var(--green-bg);
+      color: var(--green);
+      font-weight: 700;
+    }
+
+    .wf-tok.err {
+      border-color: var(--red);
+      background: var(--red-bg);
+      color: var(--red);
+      font-weight: 700;
+    }
+
+    .wf-tok.typing {
+      border-color: var(--primary);
+      color: var(--text);
+    }
   </style>
 </head>
 <body>
@@ -689,8 +794,9 @@
       <nav class="nav-tabs" role="tablist">
         <button data-tab="cards" class="btn tab-btn">1. 音节拆解词卡</button>
         <button data-tab="spell" class="btn tab-btn">2. 拼写闯关</button>
-        <button data-tab="cloze" class="btn tab-btn">3. 整句挖空默写</button>
-        <button data-tab="apply" class="btn tab-btn">4. 真题套用实战</button>
+        <button data-tab="chunks" class="btn tab-btn">3. 分句反复背写</button>
+        <button data-tab="cloze" class="btn tab-btn">4. 整句挖空默写</button>
+        <button data-tab="apply" class="btn tab-btn">5. 真题套用实战</button>
       </nav>
     </header>
 
@@ -793,7 +899,65 @@
       </div>
     </main>
 
-    <!-- TAB 3: 整句挖空默写 -->
+    <!-- TAB 3: 分句反复背写 -->
+    <main id="tab-chunks" class="tab-panel hidden">
+      <div class="card">
+        <div class="panel-top">
+          <div>
+            <div style="font-size:16px; font-weight:700;">分句反复背写（背熟一句，连续敲 3 遍形成肌肉记忆）</div>
+            <div style="font-size:12px; color:var(--muted); margin-top:2px;">点进输入框自动遮住英文，支持逐词实时纠错；敲对一遍按 Enter 立刻再刷下一遍</div>
+          </div>
+          <div class="control-pair">
+            <button id="chunkMaskBtn" class="btn btn-sm btn-outline">🙈 遮住原句</button>
+            <button id="chunkHintBtn" class="btn btn-sm">首字母提示</button>
+            <button id="chunkSpeakBtn" class="btn btn-sm">🔊 朗读本句</button>
+          </div>
+        </div>
+
+        <div id="chunkPills" class="chunk-pills"></div>
+
+        <div class="chunk-stage">
+          <div style="display:flex; justify-content:space-between; align-items:center; gap:8px; flex-wrap:wrap;">
+            <span id="chunkTitle" style="font-size:13px; font-weight:700; color:var(--sky);">第 1 句 · 背景引入</span>
+            <span id="chunkRepBadge" style="font-size:13px; font-weight:700; color:var(--amber);">已默写 0 / 3 遍</span>
+          </div>
+
+          <div id="chunkEn" class="chunk-en">With the rapid development of society,</div>
+          <div id="chunkZh" style="font-size:14px; font-weight:600;">中文：随着社会的快速发展，</div>
+          <div id="chunkHintLine" class="hidden" style="font-family:ui-monospace, monospace; font-size:14px; color:var(--amber); font-weight:700;"></div>
+          <div id="chunkTip" style="font-size:13px; color:var(--muted);"></div>
+        </div>
+
+        <div style="margin-top:14px; display:flex; flex-direction:column; gap:10px;">
+          <div style="font-size:12px; color:var(--muted);">实时逐词核对（绿色=拼对，红色=有字母错）：</div>
+          <div id="chunkWordFeedback" class="wf-row"></div>
+
+          <input
+            id="chunkInput"
+            type="text"
+            autocomplete="off"
+            autocorrect="off"
+            autocapitalize="none"
+            spellcheck="false"
+            placeholder="在这里输入整句英文，按 Enter 提交并立刻刷下一遍..."
+            class="input-field"
+            style="font-family:ui-monospace, monospace; font-size:16px; padding:12px 14px;"
+          />
+
+          <div style="display:flex; flex-wrap:wrap; justify-content:space-between; align-items:center; gap:10px;">
+            <div class="filter-group">
+              <button id="chunkSubmitBtn" class="btn btn-primary">提交这一遍 (Enter)</button>
+              <button id="chunkNextBtn" class="btn btn-success">换下一句 →</button>
+              <button id="chunkResetRepBtn" class="btn btn-outline btn-sm">重置本句次数</button>
+            </div>
+          </div>
+
+          <div id="chunkStatusMsg" class="feedback-box hidden"></div>
+        </div>
+      </div>
+    </main>
+
+    <!-- TAB 4: 整句挖空默写 -->
     <main id="tab-cloze" class="tab-panel hidden">
       <div class="card">
         <div class="panel-top">
@@ -1044,6 +1208,7 @@
     let state = {
       mastered: [],
       mistakes: [],
+      chunkReps: {},
       activeTab: 'cards',
       cardFilter: 'all',
       theme: null
@@ -1127,6 +1292,7 @@
 
       if (tabName === 'cards') renderCards();
       if (tabName === 'spell') initSpellSession();
+      if (tabName === 'chunks') renderChunkView();
       if (tabName === 'cloze') renderCloze();
       if (tabName === 'apply') renderApplyCase();
     }
@@ -1447,6 +1613,229 @@
 
       document.getElementById('spellCheckBtn').classList.add('hidden');
       document.getElementById('spellNextBtn').classList.remove('hidden');
+    });
+
+    // 分句反复背写
+    const CHUNKS = [
+      {
+        id: 'c1',
+        label: '第1句 · 背景引入',
+        en: 'With the rapid development of society,',
+        zh: '随着社会的快速发展，',
+        tip: '注意 development 中间没有 e，society 是 cie，结尾有个逗号。'
+      },
+      {
+        id: 'c2',
+        label: '第2句 · 重要性',
+        en: 'becomes increasingly important for people.',
+        zh: '（[XX]）对人们变得越来越重要。',
+        tip: '注意 becomes（复数主语用 become），increasingly 是 ea，important 是 im- 开头 -tant 结尾。'
+      },
+      {
+        id: 'c3',
+        label: '第3句 · 自然过渡',
+        en: 'It is quite natural for us to ponder',
+        zh: '我们自然而然地会思考',
+        tip: '注意写 It is 不缩写，quite 的 e 在最后（别写成 quiet），ponder 表示“思考”。'
+      },
+      {
+        id: 'c4',
+        label: '尾巴1 · 通用类',
+        en: 'why people need it.',
+        zh: '人们为什么需要它。',
+        tip: '80% 的通用话题都可以直接接这句，简单不容易拼错。'
+      },
+      {
+        id: 'c5',
+        label: '尾巴2 · 利弊类',
+        en: 'the pros and cons of it.',
+        zh: '它的利与弊。',
+        tip: '记住 pros and cons（利与弊），末尾加句号。'
+      },
+      {
+        id: 'c6',
+        label: '尾巴3 · 科技/AI类',
+        en: 'how to use it properly.',
+        zh: '如何正确使用它。',
+        tip: '注意 properly 是 pro · per + ly，别漏掉 r 或写成 or。'
+      },
+      {
+        id: 'c7',
+        label: '尾巴4 · 目标/倡议类',
+        en: 'how to achieve this goal.',
+        zh: '如何实现这一目标。',
+        tip: '注意 achieve 是 i 在 e 前面（chieve），goal 是 oa。'
+      }
+    ];
+
+    let activeChunkIdx = 0;
+    let chunkMasked = false;
+    let chunkShowHint = false;
+
+    function getChunkReps(id) {
+      return (state.chunkReps && state.chunkReps[id]) ? state.chunkReps[id] : 0;
+    }
+
+    function normalizeForCompare(str) {
+      return str.trim().toLowerCase().replace(/\s+/g, ' ').replace(/[.,!?]+$/, '');
+    }
+
+    function updateChunkWordFeedback() {
+      const chunk = CHUNKS[activeChunkIdx];
+      const targetWords = chunk.en.split(' ');
+      const rawVal = document.getElementById('chunkInput').value;
+      const typedWords = rawVal.trim() ? rawVal.trim().split(/\s+/) : [];
+      const endsWithSpace = /\s$/.test(rawVal);
+
+      const row = document.getElementById('chunkWordFeedback');
+      row.innerHTML = targetWords.map((tw, i) => {
+        const cleanTw = tw.toLowerCase().replace(/[.,!?]+$/, '');
+        const typed = typedWords[i];
+        if (typed === undefined) {
+          return `<span class="wf-tok">${chunkMasked ? '____' : tw}</span>`;
+        }
+        const cleanTyped = typed.toLowerCase().replace(/[.,!?]+$/, '');
+        const isCompletedWord = i < typedWords.length - 1 || endsWithSpace;
+        if (cleanTyped === cleanTw) {
+          return `<span class="wf-tok ok">${typed}</span>`;
+        }
+        if (!isCompletedWord && cleanTw.startsWith(cleanTyped)) {
+          return `<span class="wf-tok typing">${typed}</span>`;
+        }
+        return `<span class="wf-tok err">${typed}</span>`;
+      }).join('');
+    }
+
+    function renderChunkView() {
+      const pillsEl = document.getElementById('chunkPills');
+      pillsEl.innerHTML = CHUNKS.map((c, idx) => {
+        const reps = getChunkReps(c.id);
+        const done = reps >= 3;
+        const active = idx === activeChunkIdx;
+        return `<button class="chunk-pill ${active ? 'active' : ''} ${done ? 'done' : ''}" onclick="selectChunk(${idx})">
+          <span>${c.label}</span>
+          <span class="chunk-pill-count">${done ? '✓ ' : ''}${reps}/3</span>
+        </button>`;
+      }).join('');
+
+      const chunk = CHUNKS[activeChunkIdx];
+      const reps = getChunkReps(chunk.id);
+      document.getElementById('chunkTitle').textContent = chunk.label;
+      const badgeEl = document.getElementById('chunkRepBadge');
+      if (reps >= 3) {
+        badgeEl.textContent = `✓ 已背熟（已默写 ${reps} 遍）`;
+        badgeEl.style.color = 'var(--green)';
+      } else {
+        badgeEl.textContent = `已默写 ${reps} / 3 遍`;
+        badgeEl.style.color = 'var(--amber)';
+      }
+
+      const enEl = document.getElementById('chunkEn');
+      enEl.textContent = chunk.en;
+      enEl.classList.toggle('is-masked', chunkMasked);
+
+      const maskBtn = document.getElementById('chunkMaskBtn');
+      maskBtn.textContent = chunkMasked ? '👀 偷看原句' : '🙈 遮住原句';
+      maskBtn.className = chunkMasked ? 'btn btn-sm btn-primary' : 'btn btn-sm btn-outline';
+
+      document.getElementById('chunkZh').textContent = `中文：${chunk.zh}`;
+      document.getElementById('chunkTip').textContent = `💡 ${chunk.tip}`;
+
+      const hintLine = document.getElementById('chunkHintLine');
+      if (chunkShowHint) {
+        hintLine.classList.remove('hidden');
+        hintLine.textContent = '首字母骨架：' + chunk.en.split(' ').map(w => w[0] + '_'.repeat(Math.max(1, w.length - 1))).join(' ');
+      } else {
+        hintLine.classList.add('hidden');
+      }
+
+      updateChunkWordFeedback();
+    }
+
+    window.selectChunk = function(idx) {
+      activeChunkIdx = idx;
+      document.getElementById('chunkInput').value = '';
+      document.getElementById('chunkStatusMsg').classList.add('hidden');
+      renderChunkView();
+    };
+
+    document.getElementById('chunkMaskBtn').addEventListener('click', () => {
+      chunkMasked = !chunkMasked;
+      renderChunkView();
+    });
+
+    document.getElementById('chunkHintBtn').addEventListener('click', (e) => {
+      chunkShowHint = !chunkShowHint;
+      e.target.textContent = chunkShowHint ? '隐藏首字母' : '首字母提示';
+      renderChunkView();
+    });
+
+    document.getElementById('chunkSpeakBtn').addEventListener('click', () => {
+      speakText(CHUNKS[activeChunkIdx].en);
+    });
+
+    document.getElementById('chunkInput').addEventListener('focus', () => {
+      if (!chunkMasked) {
+        chunkMasked = true;
+        renderChunkView();
+      }
+    });
+
+    document.getElementById('chunkInput').addEventListener('input', updateChunkWordFeedback);
+
+    function submitChunkPractice() {
+      const chunk = CHUNKS[activeChunkIdx];
+      const inp = document.getElementById('chunkInput');
+      const val = inp.value;
+      const msgEl = document.getElementById('chunkStatusMsg');
+      msgEl.classList.remove('hidden');
+
+      if (normalizeForCompare(val) === normalizeForCompare(chunk.en)) {
+        if (!state.chunkReps) state.chunkReps = {};
+        const nextRep = (state.chunkReps[chunk.id] || 0) + 1;
+        state.chunkReps[chunk.id] = nextRep;
+        saveState();
+        speakText(chunk.en);
+
+        const missingPunct = chunk.en.endsWith(',') && !val.trim().endsWith(',')
+          ? '（小提醒：考场记得末尾加逗号哦）'
+          : (chunk.en.endsWith('.') && !val.trim().endsWith('.') ? '（小提醒：记得末尾加句号哦）' : '');
+
+        msgEl.className = 'feedback-box fb-ok';
+        if (nextRep >= 3) {
+          msgEl.innerHTML = `<strong>🎉 第 ${nextRep} 遍全对！这句已经背熟啦！</strong> ${missingPunct} 可以继续再刷巩固，或点「换下一句」。`;
+        } else {
+          msgEl.innerHTML = `<strong>✓ 第 ${nextRep} 遍全对！</strong> ${missingPunct} 已清空输入框，直接再敲一遍（目标 3 遍）！`;
+        }
+        inp.value = '';
+        renderChunkView();
+        inp.focus();
+      } else {
+        msgEl.className = 'feedback-box fb-err';
+        msgEl.innerHTML = `<strong>✗ 还有单词拼错或漏词</strong>，看上方标红的词改一下，或者点「👀 偷看原句」核对。`;
+      }
+    }
+
+    document.getElementById('chunkSubmitBtn').addEventListener('click', submitChunkPractice);
+    document.getElementById('chunkInput').addEventListener('keydown', (e) => {
+      if (e.key === 'Enter') submitChunkPractice();
+    });
+
+    document.getElementById('chunkNextBtn').addEventListener('click', () => {
+      activeChunkIdx = (activeChunkIdx + 1) % CHUNKS.length;
+      document.getElementById('chunkInput').value = '';
+      document.getElementById('chunkStatusMsg').classList.add('hidden');
+      renderChunkView();
+      document.getElementById('chunkInput').focus();
+    });
+
+    document.getElementById('chunkResetRepBtn').addEventListener('click', () => {
+      const chunk = CHUNKS[activeChunkIdx];
+      if (!state.chunkReps) state.chunkReps = {};
+      state.chunkReps[chunk.id] = 0;
+      saveState();
+      document.getElementById('chunkStatusMsg').classList.add('hidden');
+      renderChunkView();
     });
 
     // 整句挖空默写
