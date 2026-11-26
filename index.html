@@ -268,6 +268,17 @@
       gap: 12px;
     }
 
+    .word-card.is-masked .syllables,
+    .word-card.is-masked .tip-box {
+      filter: blur(8px);
+      user-select: none;
+      transition: filter 0.18s ease;
+    }
+
+    .syllables, .tip-box {
+      transition: filter 0.18s ease;
+    }
+
     .word-top {
       display: flex;
       justify-content: space-between;
@@ -708,8 +719,9 @@
           <button data-filter="all" class="btn btn-sm filter-btn">全部 14 词</button>
           <button data-filter="hard" class="btn btn-sm filter-btn">高危易拼错 (7词)</button>
           <button data-filter="mistakes" class="btn btn-sm filter-btn">只看错题本</button>
+          <button id="toggleMaskAllBtn" class="btn btn-sm btn-outline">🙈 遮住全部英文</button>
         </div>
-        <span style="font-size:12px; color:var(--muted);">提示：点每张卡片底部「遮住试拼」可直接练习</span>
+        <span style="font-size:12px; color:var(--muted);">点「🙈 遮住」或点进输入框会自动隐藏英文，拼对后自动揭晓</span>
       </div>
       <div id="cardsGrid" class="cards-grid"></div>
     </main>
@@ -1123,7 +1135,44 @@
       btn.addEventListener('click', () => switchTab(btn.dataset.tab));
     });
 
+    let maskAllCards = false;
+    const maskedCardIds = new Set();
+
+    function syncMaskAllBtn() {
+      const btn = document.getElementById('toggleMaskAllBtn');
+      if (!btn) return;
+      btn.textContent = maskAllCards ? '👀 显示全部英文' : '🙈 遮住全部英文';
+      btn.className = maskAllCards ? 'btn btn-sm btn-primary' : 'btn btn-sm btn-outline';
+    }
+
+    document.getElementById('toggleMaskAllBtn').addEventListener('click', () => {
+      maskAllCards = !maskAllCards;
+      if (maskAllCards) {
+        WORDS.forEach(w => maskedCardIds.add(w.id));
+      } else {
+        maskedCardIds.clear();
+      }
+      syncMaskAllBtn();
+      renderCards();
+    });
+
+    function toggleCardMask(id) {
+      if (maskedCardIds.has(id)) {
+        maskedCardIds.delete(id);
+      } else {
+        maskedCardIds.add(id);
+      }
+      const cardEl = document.querySelector(`.word-card[data-card-id="${id}"]`);
+      const btnEl = document.querySelector(`.mask-card-btn[data-card-id="${id}"]`);
+      if (cardEl && btnEl) {
+        const isMasked = maskedCardIds.has(id);
+        cardEl.classList.toggle('is-masked', isMasked);
+        btnEl.textContent = isMasked ? '👀 显示' : '🙈 遮住';
+      }
+    }
+
     function renderCards() {
+      syncMaskAllBtn();
       document.querySelectorAll('.filter-btn').forEach(btn => {
         const active = btn.dataset.filter === state.cardFilter;
         btn.className = active ? 'btn btn-sm btn-primary filter-btn' : 'btn btn-sm filter-btn';
@@ -1142,12 +1191,13 @@
       grid.innerHTML = list.map(w => {
         const isMastered = state.mastered.includes(w.id);
         const isMistake = state.mistakes.includes(w.id);
+        const isMasked = maskedCardIds.has(w.id);
         const sylHtml = w.syllables
           .map((s, idx) => `<span class="syl-${idx % 4}">${s}</span>`)
           .join('<span class="syl-dot">·</span>');
 
         return `
-          <div class="word-card">
+          <div class="word-card ${isMasked ? 'is-masked' : ''}" data-card-id="${w.id}">
             <div>
               <div class="word-top">
                 <div>
@@ -1161,6 +1211,7 @@
                   ${w.hard ? '<span class="tag tag-hard">易拼错</span>' : ''}
                   ${isMastered ? '<span class="tag tag-mastered">已掌握</span>' : ''}
                   ${isMistake ? '<span class="tag tag-mistake">错题</span>' : ''}
+                  <button onclick="toggleCardMask('${w.id}')" data-card-id="${w.id}" class="btn btn-sm btn-outline mask-card-btn" title="遮住/显示英文">${isMasked ? '👀 显示' : '🙈 遮住'}</button>
                   <button onclick="speakText('${w.word}')" class="btn btn-sm" title="朗读单词">🔊</button>
                 </div>
               </div>
@@ -1171,7 +1222,7 @@
                 type="text"
                 data-word="${w.word}"
                 data-id="${w.id}"
-                placeholder="遮住试拼: ${w.word[0]}___"
+                placeholder="点此自动遮住试拼: ${w.word[0]}___"
                 autocomplete="off"
                 autocorrect="off"
                 autocapitalize="none"
@@ -1185,6 +1236,17 @@
       }).join('');
 
       document.querySelectorAll('.card-try-input').forEach(inp => {
+        inp.addEventListener('focus', (e) => {
+          const id = e.target.dataset.id;
+          if (!maskedCardIds.has(id) && e.target.value.trim().toLowerCase() !== e.target.dataset.word.toLowerCase()) {
+            maskedCardIds.add(id);
+            const cardEl = document.querySelector(`.word-card[data-card-id="${id}"]`);
+            const btnEl = document.querySelector(`.mask-card-btn[data-card-id="${id}"]`);
+            if (cardEl) cardEl.classList.add('is-masked');
+            if (btnEl) btnEl.textContent = '👀 显示';
+          }
+        });
+
         inp.addEventListener('input', (e) => {
           const target = e.target.dataset.word.toLowerCase();
           const id = e.target.dataset.id;
@@ -1197,6 +1259,11 @@
           if (val === target) {
             statusEl.textContent = '✓ 对啦';
             statusEl.style.color = 'var(--green)';
+            maskedCardIds.delete(id);
+            const cardEl = document.querySelector(`.word-card[data-card-id="${id}"]`);
+            const btnEl = document.querySelector(`.mask-card-btn[data-card-id="${id}"]`);
+            if (cardEl) cardEl.classList.remove('is-masked');
+            if (btnEl) btnEl.textContent = '🙈 遮住';
             markMastered(id);
           } else if (target.startsWith(val)) {
             statusEl.textContent = '继续...';
