@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>四级作文「模块一」拼写与套用训练营</title>
+  <title>四级作文「模块一」逐句背写训练营</title>
   <style>
     :root {
       --bg: #f4f6fb;
@@ -13,7 +13,6 @@
       --text: #0f172a;
       --muted: #5b677d;
       --primary: #2563eb;
-      --primary-hover: #1d4ed8;
       --primary-fg: #ffffff;
       --green: #059669;
       --green-bg: rgba(5, 150, 105, 0.12);
@@ -34,7 +33,6 @@
       --text: #f1f5f9;
       --muted: #94a3b8;
       --primary: #3b82f6;
-      --primary-hover: #60a5fa;
       --primary-fg: #ffffff;
       --green: #34d399;
       --green-bg: rgba(52, 211, 153, 0.14);
@@ -47,9 +45,7 @@
       --shadow: 0 6px 24px rgba(0, 0, 0, 0.35);
     }
 
-    * {
-      box-sizing: border-box;
-    }
+    * { box-sizing: border-box; }
 
     body {
       margin: 0;
@@ -62,7 +58,7 @@
     }
 
     .container {
-      max-width: 920px;
+      max-width: 940px;
       margin: 0 auto;
       display: flex;
       flex-direction: column;
@@ -98,42 +94,21 @@
       margin-bottom: 8px;
     }
 
-    h1 {
-      margin: 0;
-      font-size: 22px;
-      line-height: 1.3;
-    }
+    h1 { margin: 0; font-size: 22px; line-height: 1.3; }
+    .subtitle { margin: 6px 0 0; font-size: 14px; color: var(--muted); }
 
-    .subtitle {
-      margin: 6px 0 0;
-      font-size: 14px;
-      color: var(--muted);
-    }
-
-    .stats-row {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      flex-wrap: wrap;
-    }
+    .stats-row { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
 
     .stat-box {
       background: var(--surface);
       border-radius: 12px;
       padding: 8px 14px;
       text-align: center;
-      min-width: 92px;
+      min-width: 90px;
     }
 
-    .stat-label {
-      font-size: 12px;
-      color: var(--muted);
-    }
-
-    .stat-val {
-      font-size: 18px;
-      font-weight: 700;
-    }
+    .stat-label { font-size: 12px; color: var(--muted); }
+    .stat-val { font-size: 18px; font-weight: 700; }
 
     .nav-tabs {
       display: flex;
@@ -144,9 +119,7 @@
       border-top: 1px solid var(--border);
     }
 
-    button, select, input {
-      font-family: inherit;
-    }
+    button, select, input { font-family: inherit; }
 
     .btn {
       border: 1px solid transparent;
@@ -155,56 +128,23 @@
       font-size: 14px;
       font-weight: 600;
       cursor: pointer;
-      transition: opacity 0.15s ease, background 0.15s ease, transform 0.08s ease;
+      transition: opacity 0.15s ease, transform 0.08s ease;
       background: var(--surface);
       color: var(--text);
     }
 
-    .btn:hover {
-      opacity: 0.88;
-    }
+    .btn:hover { opacity: 0.88; }
+    .btn:active { transform: scale(0.98); }
+    .btn-primary { background: var(--primary); color: var(--primary-fg); }
+    .btn-success { background: var(--green); color: #ffffff; }
+    .btn-outline { background: transparent; border-color: var(--border); color: var(--muted); }
+    .btn-sm { padding: 5px 11px; font-size: 12px; border-radius: 8px; }
 
-    .btn:active {
-      transform: scale(0.98);
-    }
+    .hidden { display: none !important; }
 
-    .btn-primary {
-      background: var(--primary);
-      color: var(--primary-fg);
-    }
-
-    .btn-success {
-      background: var(--green);
-      color: #ffffff;
-    }
-
-    .btn-outline {
-      background: transparent;
-      border-color: var(--border);
-      color: var(--muted);
-    }
-
-    .btn-sm {
-      padding: 5px 11px;
-      font-size: 12px;
-      border-radius: 8px;
-    }
-
-    .ref-header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      gap: 8px;
-      flex-wrap: wrap;
-    }
-
-    .ref-title {
-      font-size: 12px;
-      font-weight: 700;
-      color: var(--muted);
-      letter-spacing: 0.04em;
-    }
-
+    /* 模板原句对照 */
+    .ref-header { display: flex; justify-content: space-between; align-items: center; gap: 8px; flex-wrap: wrap; }
+    .ref-title { font-size: 12px; font-weight: 700; color: var(--muted); letter-spacing: 0.04em; }
     .ref-box {
       margin-top: 12px;
       padding: 14px;
@@ -215,12 +155,7 @@
       font-size: 14px;
       line-height: 1.75;
     }
-
-    .hl-word {
-      color: var(--sky);
-      font-weight: 700;
-    }
-
+    .hl-word { color: var(--sky); font-weight: 700; }
     .hl-slot {
       display: inline-block;
       padding: 1px 6px;
@@ -230,446 +165,14 @@
       font-weight: 700;
     }
 
-    .hidden {
-      display: none !important;
-    }
-
-    /* 词卡网格 */
-    .toolbar {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: space-between;
-      align-items: center;
-      gap: 10px;
-      margin-bottom: 12px;
-    }
-
-    .filter-group {
+    /* 逐句过关导航 */
+    .clause-pills {
       display: flex;
       flex-wrap: wrap;
       gap: 8px;
     }
 
-    .cards-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(310px, 1fr));
-      gap: 14px;
-    }
-
-    .word-card {
-      background: var(--card);
-      border: 1px solid var(--border);
-      border-radius: 16px;
-      padding: 16px;
-      box-shadow: var(--shadow);
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-      gap: 12px;
-    }
-
-    .word-card.is-masked .syllables,
-    .word-card.is-masked .tip-box {
-      filter: blur(8px);
-      user-select: none;
-      transition: filter 0.18s ease;
-    }
-
-    .syllables, .tip-box {
-      transition: filter 0.18s ease;
-    }
-
-    .word-top {
-      display: flex;
-      justify-content: space-between;
-      align-items: flex-start;
-      gap: 8px;
-    }
-
-    .syllables {
-      font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
-      font-size: 21px;
-      font-weight: 700;
-      letter-spacing: 0.02em;
-    }
-
-    .syl-0 { color: var(--sky); }
-    .syl-1 { color: var(--green); }
-    .syl-2 { color: var(--amber); }
-    .syl-3 { color: var(--violet); }
-    .syl-dot { opacity: 0.4; margin: 0 3px; }
-
-    .phonetic-line {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      margin-top: 4px;
-      flex-wrap: wrap;
-    }
-
-    .phonetic {
-      font-size: 13px;
-      color: var(--muted);
-    }
-
-    .meaning {
-      font-size: 14px;
-      font-weight: 700;
-    }
-
-    .tag-row {
-      display: flex;
-      align-items: center;
-      gap: 6px;
-      flex-shrink: 0;
-    }
-
-    .tag {
-      font-size: 12px;
-      font-weight: 600;
-      padding: 2px 7px;
-      border-radius: 6px;
-    }
-
-    .tag-hard { background: var(--red-bg); color: var(--red); }
-    .tag-mastered { background: var(--green-bg); color: var(--green); }
-    .tag-mistake { background: var(--amber-bg); color: var(--amber); }
-
-    .tip-box {
-      background: var(--surface);
-      border-radius: 10px;
-      padding: 10px 12px;
-      font-size: 13px;
-      line-height: 1.55;
-    }
-
-    .try-row {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      padding-top: 10px;
-      border-top: 1px solid var(--border);
-    }
-
-    .input-field {
-      width: 100%;
-      padding: 10px 12px;
-      border-radius: 10px;
-      border: 1px solid var(--border);
-      background: var(--surface);
-      color: var(--text);
-      font-size: 16px;
-      outline: none;
-    }
-
-    .input-field:focus {
-      border-color: var(--primary);
-      box-shadow: 0 0 0 2px rgba(37, 99, 235, 0.2);
-    }
-
-    .try-input {
-      flex: 1;
-      font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
-      padding: 7px 10px;
-      font-size: 15px;
-    }
-
-    .try-status {
-      min-width: 56px;
-      text-align: right;
-      font-size: 12px;
-      font-weight: 700;
-    }
-
-    /* 拼写闯关 */
-    .panel-top {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: space-between;
-      align-items: center;
-      gap: 12px;
-      padding-bottom: 14px;
-      border-bottom: 1px solid var(--border);
-    }
-
-    .control-pair {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      flex-wrap: wrap;
-    }
-
-    .select-field {
-      padding: 7px 10px;
-      border-radius: 10px;
-      border: 1px solid var(--border);
-      background: var(--surface);
-      color: var(--text);
-      font-size: 13px;
-      font-weight: 500;
-    }
-
-    .spell-meta {
-      display: flex;
-      justify-content: space-between;
-      font-size: 13px;
-      color: var(--muted);
-      margin-top: 14px;
-    }
-
-    .spell-center {
-      text-align: center;
-      padding: 14px 0 8px;
-    }
-
-    .spell-meaning {
-      font-size: 28px;
-      font-weight: 800;
-    }
-
-    .spell-sub {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      gap: 10px;
-      margin-top: 6px;
-      color: var(--muted);
-      font-size: 14px;
-    }
-
-    .spell-hint-txt {
-      margin-top: 10px;
-      font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
-      font-size: 15px;
-      letter-spacing: 0.14em;
-      color: var(--amber);
-      font-weight: 700;
-    }
-
-    .letter-slots {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: 6px;
-      margin: 14px 0;
-    }
-
-    .slot-cell {
-      width: 34px;
-      height: 42px;
-      border-radius: 9px;
-      border: 1px solid var(--border);
-      background: var(--surface);
-      color: var(--muted);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
-      font-size: 18px;
-      font-weight: 700;
-    }
-
-    .slot-ok {
-      border-color: var(--green);
-      background: var(--green-bg);
-      color: var(--green);
-    }
-
-    .slot-err {
-      border-color: var(--red);
-      background: var(--red-bg);
-      color: var(--red);
-    }
-
-    .slot-peek {
-      border-color: var(--amber);
-      background: var(--amber-bg);
-      color: var(--amber);
-    }
-
-    .spell-input-wrap {
-      max-width: 440px;
-      margin: 0 auto;
-      display: flex;
-      flex-direction: column;
-      gap: 12px;
-    }
-
-    .spell-main-input {
-      text-align: center;
-      font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
-      font-size: 18px;
-      padding: 12px;
-    }
-
-    .btn-center {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: 8px;
-    }
-
-    .feedback-box {
-      margin-top: 14px;
-      padding: 12px 14px;
-      border-radius: 12px;
-      font-size: 14px;
-      text-align: center;
-    }
-
-    .fb-ok {
-      background: var(--green-bg);
-      color: var(--green);
-      border: 1px solid var(--green);
-    }
-
-    .fb-err {
-      background: var(--red-bg);
-      color: var(--red);
-      border: 1px solid var(--red);
-    }
-
-    .fb-warn {
-      background: var(--amber-bg);
-      color: var(--amber);
-      border: 1px solid var(--amber);
-    }
-
-    /* 挖空默写 */
-    .cloze-box {
-      margin-top: 16px;
-      padding: 18px;
-      border-radius: 14px;
-      background: var(--surface);
-      border: 1px solid var(--border);
-      font-size: 17px;
-      line-height: 2.3;
-    }
-
-    .cloze-wrap {
-      display: inline-flex;
-      align-items: baseline;
-      margin: 2px 3px;
-    }
-
-    .cloze-input {
-      font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
-      font-size: 16px;
-      text-align: center;
-      padding: 2px 6px;
-      border-radius: 8px;
-      border: 1px solid var(--border);
-      background: var(--card);
-      color: var(--text);
-      outline: none;
-    }
-
-    .cloze-input:focus {
-      border-color: var(--primary);
-    }
-
-    .cloze-input.ok {
-      border-color: var(--green);
-      background: var(--green-bg);
-      color: var(--green);
-      font-weight: 700;
-    }
-
-    .cloze-input.err {
-      border-color: var(--red);
-      background: var(--red-bg);
-      color: var(--red);
-    }
-
-    .cloze-ans-tip {
-      font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
-      font-size: 12px;
-      color: var(--red);
-      margin-left: 4px;
-      font-weight: 700;
-    }
-
-    .cloze-actions {
-      margin-top: 16px;
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: space-between;
-      align-items: center;
-      gap: 12px;
-    }
-
-    /* 真题套用 */
-    .prompt-box {
-      margin-top: 14px;
-      padding: 14px;
-      border-radius: 12px;
-      background: var(--surface);
-      border: 1px solid var(--border);
-      font-size: 15px;
-      line-height: 1.7;
-    }
-
-    .apply-grid {
-      margin-top: 16px;
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-      gap: 12px;
-    }
-
-    .field-group {
-      display: flex;
-      flex-direction: column;
-      gap: 6px;
-    }
-
-    .field-label {
-      font-size: 12px;
-      font-weight: 700;
-      color: var(--muted);
-    }
-
-    .preview-box {
-      margin-top: 16px;
-      padding: 14px;
-      border-radius: 12px;
-      background: var(--surface);
-      border: 1px solid var(--border);
-    }
-
-    .preview-text {
-      margin: 8px 0 0;
-      font-size: 16px;
-      line-height: 1.75;
-    }
-
-    .link-btn {
-      background: none;
-      border: none;
-      padding: 0;
-      color: var(--primary);
-      font-size: 12px;
-      font-weight: 600;
-      text-decoration: underline;
-      cursor: pointer;
-      margin-top: 8px;
-    }
-
-    .footer-note {
-      text-align: center;
-      font-size: 12px;
-      color: var(--muted);
-      padding-top: 6px;
-    }
-
-    /* 分句反复背写 */
-    .chunk-pills {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 8px;
-      margin-top: 14px;
-    }
-
-    .chunk-pill {
+    .clause-pill {
       display: inline-flex;
       align-items: center;
       gap: 6px;
@@ -683,41 +186,178 @@
       cursor: pointer;
     }
 
-    .chunk-pill.active {
+    .clause-pill.active {
       background: var(--primary);
       color: var(--primary-fg);
       border-color: var(--primary);
     }
 
-    .chunk-pill-count {
+    .clause-pill-count {
       font-size: 12px;
       padding: 1px 6px;
       border-radius: 999px;
       background: rgba(255, 255, 255, 0.22);
     }
 
-    .chunk-pill:not(.active) .chunk-pill-count {
+    .clause-pill:not(.active) .clause-pill-count {
       background: var(--card);
       color: var(--muted);
     }
 
-    .chunk-pill.done:not(.active) .chunk-pill-count {
+    .clause-pill.done:not(.active) .clause-pill-count {
       background: var(--green-bg);
       color: var(--green);
     }
 
-    .chunk-stage {
-      margin-top: 16px;
-      padding: 18px;
+    .step-header {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 12px;
+    }
+
+    .step-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 14px;
+      font-weight: 700;
+    }
+
+    .step-num {
+      width: 22px;
+      height: 22px;
+      border-radius: 50%;
+      background: var(--primary);
+      color: var(--primary-fg);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 12px;
+    }
+
+    /* 本句全部单词网格 */
+    .words-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+      gap: 12px;
+    }
+
+    .word-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 14px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      gap: 10px;
+    }
+
+    .word-card.is-masked .syllables,
+    .word-card.is-masked .tip-text {
+      filter: blur(8px);
+      user-select: none;
+    }
+
+    .syllables, .tip-text {
+      transition: filter 0.18s ease;
+    }
+
+    .word-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 8px;
+    }
+
+    .syllables {
+      font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+      font-size: 19px;
+      font-weight: 700;
+    }
+
+    .syl-0 { color: var(--sky); }
+    .syl-1 { color: var(--green); }
+    .syl-2 { color: var(--amber); }
+    .syl-3 { color: var(--violet); }
+    .syl-dot { opacity: 0.4; margin: 0 2px; }
+
+    .phonetic-line {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      margin-top: 3px;
+      flex-wrap: wrap;
+    }
+
+    .phonetic { font-size: 12px; color: var(--muted); }
+    .meaning { font-size: 13px; font-weight: 700; }
+
+    .tag-row { display: flex; align-items: center; gap: 5px; flex-shrink: 0; }
+    .tag { font-size: 12px; font-weight: 600; padding: 2px 6px; border-radius: 6px; }
+    .tag-hard { background: var(--red-bg); color: var(--red); }
+    .tag-mastered { background: var(--green-bg); color: var(--green); }
+
+    .tip-text {
+      font-size: 12px;
+      color: var(--muted);
+      background: var(--card);
+      border-radius: 8px;
+      padding: 7px 9px;
+    }
+
+    .try-row {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .input-field {
+      width: 100%;
+      padding: 10px 12px;
+      border-radius: 10px;
+      border: 1px solid var(--border);
+      background: var(--card);
+      color: var(--text);
+      font-size: 16px;
+      outline: none;
+    }
+
+    .input-field:focus {
+      border-color: var(--primary);
+      box-shadow: 0 0 0 2px rgba(37, 99, 235, 0.2);
+    }
+
+    .try-input {
+      flex: 1;
+      font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+      padding: 6px 9px;
+      font-size: 14px;
+    }
+
+    .try-status { min-width: 50px; text-align: right; font-size: 12px; font-weight: 700; }
+
+    /* 本句反复默写区 */
+    .clause-stage {
+      margin-top: 18px;
+      padding-top: 18px;
+      border-top: 1px solid var(--border);
+    }
+
+    .clause-box {
+      padding: 16px;
       border-radius: 14px;
       background: var(--surface);
       border: 1px solid var(--border);
       display: flex;
       flex-direction: column;
-      gap: 12px;
+      gap: 10px;
     }
 
-    .chunk-en {
+    .clause-en {
       font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
       font-size: 20px;
       font-weight: 700;
@@ -725,46 +365,117 @@
       transition: filter 0.18s ease;
     }
 
-    .chunk-en.is-masked {
+    .clause-en.is-masked {
       filter: blur(9px);
       user-select: none;
     }
 
-    .wf-row {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 6px;
-      min-height: 28px;
-    }
-
+    .wf-row { display: flex; flex-wrap: wrap; gap: 6px; min-height: 28px; }
     .wf-tok {
       font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
       font-size: 14px;
       padding: 3px 8px;
       border-radius: 7px;
       border: 1px solid var(--border);
-      background: var(--card);
+      background: var(--surface);
       color: var(--muted);
     }
+    .wf-tok.ok { border-color: var(--green); background: var(--green-bg); color: var(--green); font-weight: 700; }
+    .wf-tok.err { border-color: var(--red); background: var(--red-bg); color: var(--red); font-weight: 700; }
+    .wf-tok.typing { border-color: var(--primary); color: var(--text); }
 
-    .wf-tok.ok {
-      border-color: var(--green);
-      background: var(--green-bg);
-      color: var(--green);
-      font-weight: 700;
+    .feedback-box {
+      margin-top: 12px;
+      padding: 12px 14px;
+      border-radius: 12px;
+      font-size: 14px;
+      text-align: center;
+    }
+    .fb-ok { background: var(--green-bg); color: var(--green); border: 1px solid var(--green); }
+    .fb-err { background: var(--red-bg); color: var(--red); border: 1px solid var(--red); }
+    .fb-warn { background: var(--amber-bg); color: var(--amber); border: 1px solid var(--amber); }
+
+    /* 拼写闯关 */
+    .panel-top {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+      padding-bottom: 14px;
+      border-bottom: 1px solid var(--border);
     }
 
-    .wf-tok.err {
-      border-color: var(--red);
-      background: var(--red-bg);
-      color: var(--red);
-      font-weight: 700;
-    }
-
-    .wf-tok.typing {
-      border-color: var(--primary);
+    .control-pair { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
+    .select-field {
+      padding: 7px 10px;
+      border-radius: 10px;
+      border: 1px solid var(--border);
+      background: var(--surface);
       color: var(--text);
+      font-size: 13px;
+      font-weight: 500;
     }
+
+    .spell-meta { display: flex; justify-content: space-between; font-size: 13px; color: var(--muted); margin-top: 14px; }
+    .spell-center { text-align: center; padding: 14px 0 8px; }
+    .spell-meaning { font-size: 28px; font-weight: 800; }
+    .spell-sub { display: flex; justify-content: center; align-items: center; gap: 10px; margin-top: 6px; color: var(--muted); font-size: 14px; }
+    .spell-hint-txt { margin-top: 10px; font-family: ui-monospace, monospace; font-size: 15px; letter-spacing: 0.14em; color: var(--amber); font-weight: 700; }
+
+    .letter-slots { display: flex; flex-wrap: wrap; justify-content: center; gap: 6px; margin: 14px 0; }
+    .slot-cell {
+      width: 34px; height: 42px;
+      border-radius: 9px; border: 1px solid var(--border);
+      background: var(--surface); color: var(--muted);
+      display: flex; align-items: center; justify-content: center;
+      font-family: ui-monospace, monospace; font-size: 18px; font-weight: 700;
+    }
+    .slot-ok { border-color: var(--green); background: var(--green-bg); color: var(--green); }
+    .slot-err { border-color: var(--red); background: var(--red-bg); color: var(--red); }
+    .slot-peek { border-color: var(--amber); background: var(--amber-bg); color: var(--amber); }
+
+    .spell-input-wrap { max-width: 440px; margin: 0 auto; display: flex; flex-direction: column; gap: 12px; }
+    .spell-main-input { text-align: center; font-family: ui-monospace, monospace; font-size: 18px; padding: 12px; background: var(--surface); }
+    .btn-center { display: flex; flex-wrap: wrap; justify-content: center; gap: 8px; }
+
+    /* 挖空默写 */
+    .cloze-box {
+      margin-top: 16px;
+      padding: 18px;
+      border-radius: 14px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      font-size: 17px;
+      line-height: 2.3;
+    }
+    .cloze-wrap { display: inline-flex; align-items: baseline; margin: 2px 3px; }
+    .cloze-input {
+      font-family: ui-monospace, monospace;
+      font-size: 16px;
+      text-align: center;
+      padding: 2px 6px;
+      border-radius: 8px;
+      border: 1px solid var(--border);
+      background: var(--card);
+      color: var(--text);
+      outline: none;
+    }
+    .cloze-input:focus { border-color: var(--primary); }
+    .cloze-input.ok { border-color: var(--green); background: var(--green-bg); color: var(--green); font-weight: 700; }
+    .cloze-input.err { border-color: var(--red); background: var(--red-bg); color: var(--red); }
+    .cloze-ans-tip { font-family: ui-monospace, monospace; font-size: 12px; color: var(--red); margin-left: 4px; font-weight: 700; }
+    .cloze-actions { margin-top: 16px; display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 12px; }
+
+    /* 真题套用 */
+    .prompt-box { margin-top: 14px; padding: 14px; border-radius: 12px; background: var(--surface); border: 1px solid var(--border); font-size: 15px; line-height: 1.7; }
+    .apply-grid { margin-top: 16px; display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 12px; }
+    .field-group { display: flex; flex-direction: column; gap: 6px; }
+    .field-label { font-size: 12px; font-weight: 700; color: var(--muted); }
+    .preview-box { margin-top: 16px; padding: 14px; border-radius: 12px; background: var(--surface); border: 1px solid var(--border); }
+    .preview-text { margin: 8px 0 0; font-size: 16px; line-height: 1.75; }
+    .link-btn { background: none; border: none; padding: 0; color: var(--primary); font-size: 12px; font-weight: 600; text-decoration: underline; cursor: pointer; margin-top: 8px; }
+    .footer-note { text-align: center; font-size: 12px; color: var(--muted); padding-top: 6px; }
   </style>
 </head>
 <body>
@@ -775,41 +486,40 @@
       <div class="header-top">
         <div>
           <div class="badge">四级作文救星 · 模块一（开头段）</div>
-          <h1>模板词汇拼写 &amp; 套用训练营</h1>
-          <p class="subtitle">把模板里的 14 个核心词拆成音节练熟，再直接默写整句和套真题，上考场一字不拼错。</p>
+          <h1>模板「逐句过关」拼写训练营</h1>
+          <p class="subtitle">一小句一小句过：先记住这句里的每个单词，再立刻把这一整小句连敲 3 遍背熟！</p>
         </div>
         <div class="stats-row">
           <div class="stat-box">
-            <div class="stat-label">已掌握词汇</div>
-            <div class="stat-val"><span id="masteredCount">0</span> / 14</div>
+            <div class="stat-label">已背熟小句</div>
+            <div class="stat-val"><span id="passedClausesCount">0</span> / 7</div>
           </div>
           <div class="stat-box">
-            <div class="stat-label">待巩固错词</div>
-            <div class="stat-val" style="color: var(--amber);" id="mistakeCount">0</div>
+            <div class="stat-label">已掌握单词</div>
+            <div class="stat-val"><span id="masteredCount">0</span> / <span id="totalWordsCount">30</span></div>
           </div>
           <button id="themeToggleBtn" class="btn btn-outline btn-sm" title="切换深浅色模式">🌓 主题</button>
         </div>
       </div>
 
       <nav class="nav-tabs" role="tablist">
-        <button data-tab="cards" class="btn tab-btn">1. 音节拆解词卡</button>
-        <button data-tab="spell" class="btn tab-btn">2. 拼写闯关</button>
-        <button data-tab="chunks" class="btn tab-btn">3. 分句反复背写</button>
-        <button data-tab="cloze" class="btn tab-btn">4. 整句挖空默写</button>
-        <button data-tab="apply" class="btn tab-btn">5. 真题套用实战</button>
+        <button data-tab="clauses" class="btn tab-btn">1. 逐句过关（词+句）</button>
+        <button data-tab="spell" class="btn tab-btn">2. 全部单词闯关</button>
+        <button data-tab="cloze" class="btn tab-btn">3. 整段挖空默写</button>
+        <button data-tab="apply" class="btn tab-btn">4. 真题套用实战</button>
       </nav>
     </header>
 
     <!-- 原句速查条 -->
     <section class="card" style="padding: 14px 18px;">
       <div class="ref-header">
-        <span class="ref-title">模板原句对照</span>
+        <span class="ref-title">模块一完整骨架对照</span>
         <div style="display:flex; gap:8px;">
           <button id="speakFullBtn" class="btn btn-sm">🔊 朗读示范句</button>
-          <button id="toggleRefBtn" class="btn btn-outline btn-sm">收起</button>
+          <button id="toggleRefBtn" class="btn btn-outline btn-sm">展开</button>
         </div>
       </div>
-      <div id="refContent" class="ref-box">
+      <div id="refContent" class="ref-box hidden">
         With the <span class="hl-word">rapid</span> <span class="hl-word">development</span> of <span class="hl-word">society</span>,
         <span class="hl-slot">[XX]</span>
         <span class="hl-word">becomes/become</span> <span class="hl-word">increasingly</span> <span class="hl-word">important</span> for <span class="hl-word">people / students</span>.
@@ -818,29 +528,90 @@
       </div>
     </section>
 
-    <!-- TAB 1: 音节拆解词卡 -->
-    <main id="tab-cards" class="tab-panel">
-      <div class="toolbar">
-        <div class="filter-group">
-          <button data-filter="all" class="btn btn-sm filter-btn">全部 14 词</button>
-          <button data-filter="hard" class="btn btn-sm filter-btn">高危易拼错 (7词)</button>
-          <button data-filter="mistakes" class="btn btn-sm filter-btn">只看错题本</button>
-          <button id="toggleMaskAllBtn" class="btn btn-sm btn-outline">🙈 遮住全部英文</button>
+    <!-- TAB 1: 逐句过关（词 + 句一体） -->
+    <main id="tab-clauses" class="tab-panel space-y-4">
+      <div class="card">
+        <div style="font-size:13px; font-weight:700; color:var(--muted); margin-bottom:8px;">选择要攻克的小句（建议按顺序 1 → 7 过完）：</div>
+        <div id="clausePills" class="clause-pills"></div>
+
+        <!-- 第 1 步：本句所有单词 -->
+        <div style="margin-top:20px; padding-top:16px; border-top:1px solid var(--border);">
+          <div class="step-header">
+            <div class="step-badge">
+              <span class="step-num">1</span>
+              <span>先记住本句里的全部单词（一个不漏，共 <span id="clauseWordCount">0</span> 词）</span>
+            </div>
+            <div class="control-pair">
+              <button id="toggleClauseWordsMaskBtn" class="btn btn-sm btn-outline">🙈 遮住本句单词</button>
+            </div>
+          </div>
+          <div id="clauseWordsGrid" class="words-grid"></div>
         </div>
-        <span style="font-size:12px; color:var(--muted);">点「🙈 遮住」或点进输入框会自动隐藏英文，拼对后自动揭晓</span>
+
+        <!-- 第 2 步：本句反复默写 -->
+        <div class="clause-stage">
+          <div class="step-header">
+            <div class="step-badge">
+              <span class="step-num">2</span>
+              <span>把这一小句连敲 3 遍（背熟过关）</span>
+            </div>
+            <div class="control-pair">
+              <button id="clauseMaskBtn" class="btn btn-sm btn-outline">🙈 遮住原句</button>
+              <button id="clauseHintBtn" class="btn btn-sm">首字母提示</button>
+              <button id="clauseSpeakBtn" class="btn btn-sm">🔊 朗读本句</button>
+            </div>
+          </div>
+
+          <div class="clause-box">
+            <div style="display:flex; justify-content:space-between; align-items:center; gap:8px; flex-wrap:wrap;">
+              <span id="clauseTitle" style="font-size:13px; font-weight:700; color:var(--sky);">第 1 句</span>
+              <span id="clauseRepBadge" style="font-size:13px; font-weight:700; color:var(--amber);">已默写 0 / 3 遍</span>
+            </div>
+            <div id="clauseEn" class="clause-en"></div>
+            <div id="clauseZh" style="font-size:14px; font-weight:600;"></div>
+            <div id="clauseHintLine" class="hidden" style="font-family:ui-monospace, monospace; font-size:14px; color:var(--amber); font-weight:700;"></div>
+            <div id="clauseTip" style="font-size:13px; color:var(--muted);"></div>
+          </div>
+
+          <div style="margin-top:12px; display:flex; flex-direction:column; gap:10px;">
+            <div style="font-size:12px; color:var(--muted);">实时逐词核对（点进输入框会自动遮住上面原句，绿=对，红=错）：</div>
+            <div id="clauseWordFeedback" class="wf-row"></div>
+
+            <input
+              id="clauseInput"
+              type="text"
+              autocomplete="off"
+              autocorrect="off"
+              autocapitalize="none"
+              spellcheck="false"
+              placeholder="在这里默写本小句英文，按 Enter 提交并立刻刷下一遍..."
+              class="input-field"
+              style="font-family:ui-monospace, monospace; font-size:16px; padding:12px 14px; background:var(--surface);"
+            />
+
+            <div style="display:flex; flex-wrap:wrap; justify-content:space-between; align-items:center; gap:10px;">
+              <div class="control-pair">
+                <button id="clauseSubmitBtn" class="btn btn-primary">提交这一遍 (Enter)</button>
+                <button id="clauseNextBtn" class="btn btn-success">下一小句 →</button>
+                <button id="clauseResetRepBtn" class="btn btn-outline btn-sm">重置本句次数</button>
+              </div>
+            </div>
+
+            <div id="clauseStatusMsg" class="feedback-box hidden"></div>
+          </div>
+        </div>
       </div>
-      <div id="cardsGrid" class="cards-grid"></div>
     </main>
 
-    <!-- TAB 2: 拼写闯关 -->
+    <!-- TAB 2: 全部单词拼写闯关 -->
     <main id="tab-spell" class="tab-panel hidden">
       <div class="card">
         <div class="panel-top">
           <div class="control-pair">
             <span style="font-size:13px; font-weight:600;">出题范围：</span>
             <select id="spellScope" class="select-field">
-              <option value="all">全部 14 个模板词</option>
-              <option value="hard">仅高危易错词（推荐）</option>
+              <option value="hard">高危易错词（重点练）</option>
+              <option value="all">全部 30 个模板词</option>
               <option value="mistakes">仅错题本词汇</option>
             </select>
           </div>
@@ -855,12 +626,12 @@
         </div>
 
         <div id="spellEmptyMsg" class="hidden" style="text-align:center; padding:32px 12px; color:var(--muted); font-size:14px;">
-          错题本目前是空的！可以先选「全部 14 个模板词」开始练习。
+          错题本目前是空的！可以先选「高危易错词」或「全部 30 个模板词」开始练习。
         </div>
 
         <div id="spellArena">
           <div class="spell-meta">
-            <span>第 <strong id="spellIndex">1</strong> / <strong id="spellTotal">14</strong> 题</span>
+            <span>第 <strong id="spellIndex">1</strong> / <strong id="spellTotal">10</strong> 题</span>
             <span>当前连对：<strong id="spellStreak" style="color:var(--green);">0</strong></span>
           </div>
 
@@ -899,65 +670,7 @@
       </div>
     </main>
 
-    <!-- TAB 3: 分句反复背写 -->
-    <main id="tab-chunks" class="tab-panel hidden">
-      <div class="card">
-        <div class="panel-top">
-          <div>
-            <div style="font-size:16px; font-weight:700;">分句反复背写（背熟一句，连续敲 3 遍形成肌肉记忆）</div>
-            <div style="font-size:12px; color:var(--muted); margin-top:2px;">点进输入框自动遮住英文，支持逐词实时纠错；敲对一遍按 Enter 立刻再刷下一遍</div>
-          </div>
-          <div class="control-pair">
-            <button id="chunkMaskBtn" class="btn btn-sm btn-outline">🙈 遮住原句</button>
-            <button id="chunkHintBtn" class="btn btn-sm">首字母提示</button>
-            <button id="chunkSpeakBtn" class="btn btn-sm">🔊 朗读本句</button>
-          </div>
-        </div>
-
-        <div id="chunkPills" class="chunk-pills"></div>
-
-        <div class="chunk-stage">
-          <div style="display:flex; justify-content:space-between; align-items:center; gap:8px; flex-wrap:wrap;">
-            <span id="chunkTitle" style="font-size:13px; font-weight:700; color:var(--sky);">第 1 句 · 背景引入</span>
-            <span id="chunkRepBadge" style="font-size:13px; font-weight:700; color:var(--amber);">已默写 0 / 3 遍</span>
-          </div>
-
-          <div id="chunkEn" class="chunk-en">With the rapid development of society,</div>
-          <div id="chunkZh" style="font-size:14px; font-weight:600;">中文：随着社会的快速发展，</div>
-          <div id="chunkHintLine" class="hidden" style="font-family:ui-monospace, monospace; font-size:14px; color:var(--amber); font-weight:700;"></div>
-          <div id="chunkTip" style="font-size:13px; color:var(--muted);"></div>
-        </div>
-
-        <div style="margin-top:14px; display:flex; flex-direction:column; gap:10px;">
-          <div style="font-size:12px; color:var(--muted);">实时逐词核对（绿色=拼对，红色=有字母错）：</div>
-          <div id="chunkWordFeedback" class="wf-row"></div>
-
-          <input
-            id="chunkInput"
-            type="text"
-            autocomplete="off"
-            autocorrect="off"
-            autocapitalize="none"
-            spellcheck="false"
-            placeholder="在这里输入整句英文，按 Enter 提交并立刻刷下一遍..."
-            class="input-field"
-            style="font-family:ui-monospace, monospace; font-size:16px; padding:12px 14px;"
-          />
-
-          <div style="display:flex; flex-wrap:wrap; justify-content:space-between; align-items:center; gap:10px;">
-            <div class="filter-group">
-              <button id="chunkSubmitBtn" class="btn btn-primary">提交这一遍 (Enter)</button>
-              <button id="chunkNextBtn" class="btn btn-success">换下一句 →</button>
-              <button id="chunkResetRepBtn" class="btn btn-outline btn-sm">重置本句次数</button>
-            </div>
-          </div>
-
-          <div id="chunkStatusMsg" class="feedback-box hidden"></div>
-        </div>
-      </div>
-    </main>
-
-    <!-- TAB 4: 整句挖空默写 -->
+    <!-- TAB 3: 整段挖空默写 -->
     <main id="tab-cloze" class="tab-panel hidden">
       <div class="card">
         <div class="panel-top">
@@ -982,7 +695,7 @@
         <div id="clozeSentenceBox" class="cloze-box"></div>
 
         <div class="cloze-actions">
-          <div class="filter-group">
+          <div class="control-pair">
             <button id="clozeCheckBtn" class="btn btn-primary">全部批改</button>
             <button id="clozeHintBtn" class="btn">显示首字母提示</button>
             <button id="clozeResetBtn" class="btn btn-outline">清空重填</button>
@@ -1061,156 +774,116 @@
   </div>
 
   <script>
-    const WORDS = [
+    // ==================== 完整词汇库（模板里每一个词都收录） ====================
+    const WORD_BANK = {
+      with: { id: 'with', word: 'with', syllables: ['with'], phonetic: '/wɪð/', meaning: '随着，伴随着', hard: false, tip: '句首大写 With，固定开头 With the rapid development of society,' },
+      the: { id: 'the', word: 'the', syllables: ['the'], phonetic: '/ðə/', meaning: '这，那（定冠词）', hard: false, tip: 'th + e，最基础的定冠词。' },
+      rapid: { id: 'rapid', word: 'rapid', syllables: ['ra', 'pid'], phonetic: '/ˈræpɪd/', meaning: '快速的', hard: false, tip: '联想 rap（说唱很快）+ id。搭配 rapid development。' },
+      development: { id: 'development', word: 'development', syllables: ['de', 'vel', 'op', 'ment'], phonetic: '/dɪˈveləpmənt/', meaning: '发展', hard: true, tip: '【高频坑】develop + ment，中间没有 e！别写成 developement。' },
+      of: { id: 'of', word: 'of', syllables: ['of'], phonetic: '/ɒv/', meaning: '……的', hard: false, tip: 'o + f，表示所属关系。' },
+      society: { id: 'society', word: 'society', syllables: ['so', 'cie', 'ty'], phonetic: '/səˈsaɪəti/', meaning: '社会', hard: true, tip: '【高频坑】中间是 cie，口诀：so + cie + ty，别漏 i。' },
+      becomes: { id: 'becomes', word: 'becomes', syllables: ['be', 'comes'], phonetic: '/bɪˈkʌmz/', meaning: '变得（单数用）', hard: false, tip: 'be + come + s。单数/动名词用 becomes，复数用 become。' },
+      increasingly: { id: 'increasingly', word: 'increasingly', syllables: ['in', 'creas', 'ing', 'ly'], phonetic: '/ɪnˈkriːsɪŋli/', meaning: '越来越', hard: true, tip: '【长词拆解】in + creas(e) + ing + ly，中间是 ea 不是 ee。' },
+      important: { id: 'important', word: 'important', syllables: ['im', 'por', 'tant'], phonetic: '/ɪmˈpɔːtnt/', meaning: '重要的', hard: true, tip: '【高频坑】开头 im-（不是 in-），结尾 -tant（不是 -tent）。' },
+      for: { id: 'for', word: 'for', syllables: ['for'], phonetic: '/fɔː(r)/', meaning: '对……而言', hard: false, tip: 'f + o + r，important for people（对人们重要）。' },
+      people: { id: 'people', word: 'people', syllables: ['peo', 'ple'], phonetic: '/ˈpiːpl/', meaning: '人们', hard: true, tip: '【易漏字母】中间是 eo（peo + ple），别漏掉 o 写成 peple。' },
+      students: { id: 'students', word: 'students', syllables: ['stu', 'dents'], phonetic: '/ˈstjuːdnts/', meaning: '学生们', hard: false, tip: 'stu + dent + s，结尾有 s。' },
+      it: { id: 'it', word: 'it', syllables: ['it'], phonetic: '/ɪt/', meaning: '它（形式主语/代词）', hard: false, tip: '句首写 It is，正式作文不要缩写成 It\'s。' },
+      is: { id: 'is', word: 'is', syllables: ['is'], phonetic: '/ɪz/', meaning: '是', hard: false, tip: 'It is... 固定开头。' },
+      quite: { id: 'quite', word: 'quite', syllables: ['quite'], phonetic: '/kwaɪt/', meaning: '相当，十分', hard: true, tip: '【致命混淆】e 在最后是 quite（相当）；quiet 是安静的！' },
+      natural: { id: 'natural', word: 'natural', syllables: ['na', 'tu', 'ral'], phonetic: '/ˈnætʃrəl/', meaning: '自然的，合乎常理的', hard: false, tip: 'nature 去 e 加 al → na · tu · ral。' },
+      us: { id: 'us', word: 'us', syllables: ['us'], phonetic: '/ʌs/', meaning: '我们（宾格）', hard: false, tip: 'for us（对我们来说），for 后面用宾格 us 不用 we。' },
+      to: { id: 'to', word: 'to', syllables: ['to'], phonetic: '/tuː/', meaning: '去（不定式符号）', hard: false, tip: 'to + 动词原形（to ponder / to use / to achieve）。' },
+      ponder: { id: 'ponder', word: 'ponder', syllables: ['pon', 'der'], phonetic: '/ˈpɒndə(r)/', meaning: '思考，沉思', hard: false, tip: 'pond（池塘）+ er → 在池塘边思考。' },
+      why: { id: 'why', word: 'why', syllables: ['why'], phonetic: '/waɪ/', meaning: '为什么', hard: false, tip: 'w + h + y，引导宾语从句“为什么……”。' },
+      need: { id: 'need', word: 'need', syllables: ['need'], phonetic: '/niːd/', meaning: '需要', hard: false, tip: '中间是两个 e（n + ee + d）。' },
+      pros: { id: 'pros', word: 'pros', syllables: ['pros'], phonetic: '/prəʊz/', meaning: '好处，赞成方面', hard: false, tip: 'pro + s，固定搭配 pros and cons（利与弊）。' },
+      and: { id: 'and', word: 'and', syllables: ['and'], phonetic: '/ænd/', meaning: '和，与', hard: false, tip: 'a + n + d。' },
+      cons: { id: 'cons', word: 'cons', syllables: ['cons'], phonetic: '/kɒnz/', meaning: '弊端，反对方面', hard: false, tip: 'con + s，和 pros 一起记。' },
+      how: { id: 'how', word: 'how', syllables: ['how'], phonetic: '/haʊ/', meaning: '如何，怎样', hard: false, tip: 'h + o + w，how to...（如何……）。' },
+      use: { id: 'use', word: 'use', syllables: ['use'], phonetic: '/juːz/', meaning: '使用', hard: false, tip: 'u + s + e，use it properly（正确使用它）。' },
+      properly: { id: 'properly', word: 'properly', syllables: ['pro', 'per', 'ly'], phonetic: '/ˈprɒpəli/', meaning: '正确地，恰当地', hard: true, tip: '【易错】pro · per + ly，中间是 er 别写成 or。' },
+      achieve: { id: 'achieve', word: 'achieve', syllables: ['a', 'chieve'], phonetic: '/əˈtʃiːv/', meaning: '实现，达到', hard: true, tip: '【高频坑】i 在 e 前面（chieve），别写成 acheive！' },
+      this: { id: 'this', word: 'this', syllables: ['this'], phonetic: '/ðɪs/', meaning: '这个', hard: false, tip: 'th + i + s，this goal（这一目标）。' },
+      goal: { id: 'goal', word: 'goal', syllables: ['goal'], phonetic: '/ɡəʊl/', meaning: '目标', hard: true, tip: '【易错】中间是 oa（g + oa + l），别写成 gaol 或漏 a。' }
+    };
+
+    const ALL_WORDS = Object.values(WORD_BANK);
+
+    // ==================== 按小句分组（每句单词不拆散，一个不少） ====================
+    const CLAUSES = [
       {
-        id: 'rapid',
-        word: 'rapid',
-        syllables: ['ra', 'pid'],
-        phonetic: '/ˈræpɪd/',
-        meaning: '快速的，迅速的',
-        hard: false,
-        tip: '联想记忆：rap（说唱语速很快）+ id = 快速的。固定搭配 rapid development（快速发展）。',
-        phrase: 'the rapid development'
+        id: 'c1',
+        shortLabel: '第1句 · 背景引入',
+        title: '第 1 句 · 背景引入（背完这 6 个词就敲整句）',
+        en: 'With the rapid development of society,',
+        zh: '随着社会的快速发展，',
+        tip: '注意 development 中间没有 e，society 是 cie，结尾有个逗号。',
+        words: ['with', 'the', 'rapid', 'development', 'of', 'society']
       },
       {
-        id: 'development',
-        word: 'development',
-        syllables: ['de', 'vel', 'op', 'ment'],
-        phonetic: '/dɪˈveləpmənt/',
-        meaning: '发展',
-        hard: true,
-        tip: '【高频坑】先记动词 develop（没有 e 结尾！），直接加名词后缀 -ment，千万别多写成 developement！',
-        phrase: 'development of society'
+        id: 'c2',
+        shortLabel: '第2句 · 重要性',
+        title: '第 2 句 · 核心重要性（注意 becomes 单复数）',
+        en: 'becomes increasingly important for people.',
+        zh: '（[XX]）对人们变得越来越重要。',
+        tip: '主语单数用 becomes，复数用 become；写 students 时把 people 换成 students 即可。',
+        words: ['becomes', 'increasingly', 'important', 'for', 'people', 'students']
       },
       {
-        id: 'society',
-        word: 'society',
-        syllables: ['so', 'cie', 'ty'],
-        phonetic: '/səˈsaɪəti/',
-        meaning: '社会',
-        hard: true,
-        tip: '【高频坑】中间是 cie 三个字母，容易漏掉 i 或把 ie 写反。记口诀：so + cie + ty。',
-        phrase: 'development of society'
+        id: 'c3',
+        shortLabel: '第3句 · 自然过渡',
+        title: '第 3 句 · 自然过渡（接尾巴前的引子）',
+        en: 'It is quite natural for us to ponder',
+        zh: '我们自然而然地会思考',
+        tip: '正式作文写 It is 不缩写；quite 的 e 在最后（别写成 quiet）；ponder 表示“思考”。',
+        words: ['it', 'is', 'quite', 'natural', 'for', 'us', 'to', 'ponder']
       },
       {
-        id: 'becomes',
-        word: 'becomes',
-        syllables: ['be', 'comes'],
-        phonetic: '/bɪˈkʌmz/',
-        meaning: '变得（单数第三人称）',
-        hard: false,
-        tip: 'be + come + s。记住：主语是单数或 -ing 短语用 becomes，复数用 become。',
-        phrase: 'becomes increasingly important'
+        id: 'c4',
+        shortLabel: '尾巴1 · 通用类',
+        title: '尾巴 1 · 通用类（80% 题目直接选这句）',
+        en: 'why people need it.',
+        zh: '人们为什么需要它。',
+        tip: '最万金油的一句，4 个简单词，末尾加句号。',
+        words: ['why', 'people', 'need', 'it']
       },
       {
-        id: 'increasingly',
-        word: 'increasingly',
-        syllables: ['in', 'creas', 'ing', 'ly'],
-        phonetic: '/ɪnˈkriːsɪŋli/',
-        meaning: '越来越，日益',
-        hard: true,
-        tip: '【长词拆解】in（向内）+ crease（增长，去 e 加 ing）+ ly（副词）。注意中间是 ea 发 /iː/，别写成 ee！',
-        phrase: 'increasingly important'
+        id: 'c5',
+        shortLabel: '尾巴2 · 利弊类',
+        title: '尾巴 2 · 利弊争议类',
+        en: 'the pros and cons of it.',
+        zh: '它的利与弊。',
+        tip: '遇到“是否应该…… / 利与弊”就接这句，记住 pros and cons。',
+        words: ['the', 'pros', 'and', 'cons', 'of', 'it']
       },
       {
-        id: 'important',
-        word: 'important',
-        syllables: ['im', 'por', 'tant'],
-        phonetic: '/ɪmˈpɔːtnt/',
-        meaning: '重要的',
-        hard: true,
-        tip: '【高频坑】开头是 im-（不是 in-），结尾是 -tant（不是 -tent）。分三段：im · por · tant。',
-        phrase: 'increasingly important'
+        id: 'c6',
+        shortLabel: '尾巴3 · 科技/AI',
+        title: '尾巴 3 · 科技 / AI / 工具类',
+        en: 'how to use it properly.',
+        zh: '如何正确使用它。',
+        tip: '注意 properly 是 pro · per + ly。',
+        words: ['how', 'to', 'use', 'it', 'properly']
       },
       {
-        id: 'students',
-        word: 'students',
-        syllables: ['stu', 'dents'],
-        phonetic: '/ˈstjuːdnts/',
-        meaning: '学生们',
-        hard: false,
-        tip: '注意结尾一般加 s 表示泛指学生群体（for students）。',
-        phrase: 'for students'
-      },
-      {
-        id: 'quite',
-        word: 'quite',
-        syllables: ['quite'],
-        phonetic: '/kwaɪt/',
-        meaning: '相当，十分',
-        hard: true,
-        tip: '【致命混淆】e 在最后是 quite（相当）；e 在 t 前面是 quiet（安静的）。记住“很(quite)到最后”。',
-        phrase: 'It is quite natural'
-      },
-      {
-        id: 'natural',
-        word: 'natural',
-        syllables: ['na', 'tu', 'ral'],
-        phonetic: '/ˈnætʃrəl/',
-        meaning: '自然的，合乎常理的',
-        hard: false,
-        tip: '由 nature（自然）去 e 加 -al 变成形容词。三音节拼读：na · tu · ral。',
-        phrase: 'quite natural for us'
-      },
-      {
-        id: 'ponder',
-        word: 'ponder',
-        syllables: ['pon', 'der'],
-        phonetic: '/ˈpɒndə(r)/',
-        meaning: '思考，沉思',
-        hard: false,
-        tip: '联想记忆：pond（池塘）+ er → 站在池塘边发呆思考。高级替换词，比 think 加分！',
-        phrase: 'for us to ponder'
-      },
-      {
-        id: 'pros',
-        word: 'pros',
-        syllables: ['pros'],
-        phonetic: '/prəʊz/',
-        meaning: '赞成方面，好处（常与 cons 连用）',
-        hard: false,
-        tip: 'pro（支持/正面）+ s。固定短语：the pros and cons of it（它的利与弊）。',
-        phrase: 'the pros and cons of it'
-      },
-      {
-        id: 'cons',
-        word: 'cons',
-        syllables: ['cons'],
-        phonetic: '/kɒnz/',
-        meaning: '反对方面，弊端',
-        hard: false,
-        tip: 'con（反对/负面）+ s。和 pros 一起背：pros and cons（利与弊）。',
-        phrase: 'the pros and cons of it'
-      },
-      {
-        id: 'properly',
-        word: 'properly',
-        syllables: ['pro', 'per', 'ly'],
-        phonetic: '/ˈprɒpəli/',
-        meaning: '正确地，恰当地',
-        hard: true,
-        tip: '【双 p 别少写，er 别写成 or】pro · per + ly。科技/AI 类话题必用：use it properly（正确使用它）。',
-        phrase: 'how to use it properly'
-      },
-      {
-        id: 'achieve',
-        word: 'achieve',
-        syllables: ['a', 'chieve'],
-        phonetic: '/əˈtʃiːv/',
-        meaning: '实现，达到',
-        hard: true,
-        tip: '【高频坑】一定是 i 在 e 前面（chieve），不是 acheive！口诀：a + ch + ie + ve。',
-        phrase: 'how to achieve this goal'
+        id: 'c7',
+        shortLabel: '尾巴4 · 目标倡议',
+        title: '尾巴 4 · 倡议 / 建议 / 目标类',
+        en: 'how to achieve this goal.',
+        zh: '如何实现这一目标。',
+        tip: '注意 achieve 是 i 在 e 前面，goal 是 oa。',
+        words: ['how', 'to', 'achieve', 'this', 'goal']
       }
     ];
 
-    const STORAGE_KEY = 'cet4_module1_trainer_pages_v1';
+    const STORAGE_KEY = 'cet4_module1_trainer_pages_v2';
     let state = {
       mastered: [],
       mistakes: [],
-      chunkReps: {},
-      activeTab: 'cards',
-      cardFilter: 'all',
+      clauseReps: {},
+      activeTab: 'clauses',
+      activeClauseIdx: 0,
       theme: null
     };
 
@@ -1243,8 +916,10 @@
     }
 
     function updateStats() {
+      const passedClauses = CLAUSES.filter(c => (state.clauseReps[c.id] || 0) >= 3).length;
+      document.getElementById('passedClausesCount').textContent = passedClauses;
       document.getElementById('masteredCount').textContent = state.mastered.length;
-      document.getElementById('mistakeCount').textContent = state.mistakes.length;
+      document.getElementById('totalWordsCount').textContent = ALL_WORDS.length;
     }
 
     function markMastered(id) {
@@ -1290,9 +965,8 @@
         btn.className = active ? 'btn btn-primary tab-btn' : 'btn tab-btn';
       });
 
-      if (tabName === 'cards') renderCards();
+      if (tabName === 'clauses') renderClausePage();
       if (tabName === 'spell') initSpellSession();
-      if (tabName === 'chunks') renderChunkView();
       if (tabName === 'cloze') renderCloze();
       if (tabName === 'apply') renderApplyCase();
     }
@@ -1301,63 +975,55 @@
       btn.addEventListener('click', () => switchTab(btn.dataset.tab));
     });
 
-    let maskAllCards = false;
-    const maskedCardIds = new Set();
+    // ==================== TAB 1: 逐句过关（本句单词 + 本句反复默写） ====================
+    let maskAllClauseWords = false;
+    const maskedWordIds = new Set();
+    let clauseMasked = false;
+    let clauseShowHint = false;
 
-    function syncMaskAllBtn() {
-      const btn = document.getElementById('toggleMaskAllBtn');
-      if (!btn) return;
-      btn.textContent = maskAllCards ? '👀 显示全部英文' : '🙈 遮住全部英文';
-      btn.className = maskAllCards ? 'btn btn-sm btn-primary' : 'btn btn-sm btn-outline';
+    function getClauseReps(id) {
+      return (state.clauseReps && state.clauseReps[id]) ? state.clauseReps[id] : 0;
     }
 
-    document.getElementById('toggleMaskAllBtn').addEventListener('click', () => {
-      maskAllCards = !maskAllCards;
-      if (maskAllCards) {
-        WORDS.forEach(w => maskedCardIds.add(w.id));
-      } else {
-        maskedCardIds.clear();
-      }
-      syncMaskAllBtn();
-      renderCards();
+    function syncClauseWordsMaskBtn() {
+      const btn = document.getElementById('toggleClauseWordsMaskBtn');
+      btn.textContent = maskAllClauseWords ? '👀 显示本句单词' : '🙈 遮住本句单词';
+      btn.className = maskAllClauseWords ? 'btn btn-sm btn-primary' : 'btn btn-sm btn-outline';
+    }
+
+    document.getElementById('toggleClauseWordsMaskBtn').addEventListener('click', () => {
+      maskAllClauseWords = !maskAllClauseWords;
+      const clause = CLAUSES[state.activeClauseIdx];
+      clause.words.forEach(wid => {
+        if (maskAllClauseWords) maskedWordIds.add(wid);
+        else maskedWordIds.delete(wid);
+      });
+      syncClauseWordsMaskBtn();
+      renderClauseWords();
     });
 
-    function toggleCardMask(id) {
-      if (maskedCardIds.has(id)) {
-        maskedCardIds.delete(id);
-      } else {
-        maskedCardIds.add(id);
-      }
+    window.toggleSingleWordMask = function(id) {
+      if (maskedWordIds.has(id)) maskedWordIds.delete(id);
+      else maskedWordIds.add(id);
       const cardEl = document.querySelector(`.word-card[data-card-id="${id}"]`);
       const btnEl = document.querySelector(`.mask-card-btn[data-card-id="${id}"]`);
       if (cardEl && btnEl) {
-        const isMasked = maskedCardIds.has(id);
+        const isMasked = maskedWordIds.has(id);
         cardEl.classList.toggle('is-masked', isMasked);
         btnEl.textContent = isMasked ? '👀 显示' : '🙈 遮住';
       }
-    }
+    };
 
-    function renderCards() {
-      syncMaskAllBtn();
-      document.querySelectorAll('.filter-btn').forEach(btn => {
-        const active = btn.dataset.filter === state.cardFilter;
-        btn.className = active ? 'btn btn-sm btn-primary filter-btn' : 'btn btn-sm filter-btn';
-      });
+    function renderClauseWords() {
+      syncClauseWordsMaskBtn();
+      const clause = CLAUSES[state.activeClauseIdx];
+      document.getElementById('clauseWordCount').textContent = clause.words.length;
+      const grid = document.getElementById('clauseWordsGrid');
 
-      let list = WORDS;
-      if (state.cardFilter === 'hard') list = WORDS.filter(w => w.hard);
-      if (state.cardFilter === 'mistakes') list = WORDS.filter(w => state.mistakes.includes(w.id));
-
-      const grid = document.getElementById('cardsGrid');
-      if (list.length === 0) {
-        grid.innerHTML = `<div class="card" style="grid-column:1/-1; text-align:center; color:var(--muted); font-size:14px;">当前筛选下没有单词（你的错题本还是空的哦）。</div>`;
-        return;
-      }
-
-      grid.innerHTML = list.map(w => {
+      grid.innerHTML = clause.words.map(wid => {
+        const w = WORD_BANK[wid];
         const isMastered = state.mastered.includes(w.id);
-        const isMistake = state.mistakes.includes(w.id);
-        const isMasked = maskedCardIds.has(w.id);
+        const isMasked = maskedWordIds.has(w.id);
         const sylHtml = w.syllables
           .map((s, idx) => `<span class="syl-${idx % 4}">${s}</span>`)
           .join('<span class="syl-dot">·</span>');
@@ -1374,14 +1040,13 @@
                   </div>
                 </div>
                 <div class="tag-row">
-                  ${w.hard ? '<span class="tag tag-hard">易拼错</span>' : ''}
-                  ${isMastered ? '<span class="tag tag-mastered">已掌握</span>' : ''}
-                  ${isMistake ? '<span class="tag tag-mistake">错题</span>' : ''}
-                  <button onclick="toggleCardMask('${w.id}')" data-card-id="${w.id}" class="btn btn-sm btn-outline mask-card-btn" title="遮住/显示英文">${isMasked ? '👀 显示' : '🙈 遮住'}</button>
-                  <button onclick="speakText('${w.word}')" class="btn btn-sm" title="朗读单词">🔊</button>
+                  ${w.hard ? '<span class="tag tag-hard">易错</span>' : ''}
+                  ${isMastered ? '<span class="tag tag-mastered">✓</span>' : ''}
+                  <button onclick="toggleSingleWordMask('${w.id}')" data-card-id="${w.id}" class="btn btn-sm btn-outline mask-card-btn" title="遮住/显示">${isMasked ? '👀 显示' : '🙈 遮住'}</button>
+                  <button onclick="speakText('${w.word}')" class="btn btn-sm" title="朗读">🔊</button>
                 </div>
               </div>
-              <div class="tip-box" style="margin-top:10px;">💡 ${w.tip}</div>
+              <div class="tip-text" style="margin-top:8px;">💡 ${w.tip}</div>
             </div>
             <div class="try-row">
               <input
@@ -1404,8 +1069,8 @@
       document.querySelectorAll('.card-try-input').forEach(inp => {
         inp.addEventListener('focus', (e) => {
           const id = e.target.dataset.id;
-          if (!maskedCardIds.has(id) && e.target.value.trim().toLowerCase() !== e.target.dataset.word.toLowerCase()) {
-            maskedCardIds.add(id);
+          if (!maskedWordIds.has(id) && e.target.value.trim().toLowerCase() !== e.target.dataset.word.toLowerCase()) {
+            maskedWordIds.add(id);
             const cardEl = document.querySelector(`.word-card[data-card-id="${id}"]`);
             const btnEl = document.querySelector(`.mask-card-btn[data-card-id="${id}"]`);
             if (cardEl) cardEl.classList.add('is-masked');
@@ -1425,7 +1090,7 @@
           if (val === target) {
             statusEl.textContent = '✓ 对啦';
             statusEl.style.color = 'var(--green)';
-            maskedCardIds.delete(id);
+            maskedWordIds.delete(id);
             const cardEl = document.querySelector(`.word-card[data-card-id="${id}"]`);
             const btnEl = document.querySelector(`.mask-card-btn[data-card-id="${id}"]`);
             if (cardEl) cardEl.classList.remove('is-masked');
@@ -1442,14 +1107,179 @@
       });
     }
 
-    document.querySelectorAll('.filter-btn').forEach(btn => {
-      btn.addEventListener('click', () => {
-        state.cardFilter = btn.dataset.filter;
-        renderCards();
-      });
+    function normalizeForCompare(str) {
+      return str.trim().toLowerCase().replace(/\s+/g, ' ').replace(/[.,!?]+$/, '');
+    }
+
+    function updateClauseWordFeedback() {
+      const clause = CLAUSES[state.activeClauseIdx];
+      const targetWords = clause.en.split(' ');
+      const rawVal = document.getElementById('clauseInput').value;
+      const typedWords = rawVal.trim() ? rawVal.trim().split(/\s+/) : [];
+      const endsWithSpace = /\s$/.test(rawVal);
+
+      const row = document.getElementById('clauseWordFeedback');
+      row.innerHTML = targetWords.map((tw, i) => {
+        const cleanTw = tw.toLowerCase().replace(/[.,!?]+$/, '');
+        const typed = typedWords[i];
+        if (typed === undefined) {
+          return `<span class="wf-tok">${clauseMasked ? '____' : tw}</span>`;
+        }
+        const cleanTyped = typed.toLowerCase().replace(/[.,!?]+$/, '');
+        const isCompletedWord = i < typedWords.length - 1 || endsWithSpace;
+        if (cleanTyped === cleanTw) {
+          return `<span class="wf-tok ok">${typed}</span>`;
+        }
+        if (!isCompletedWord && cleanTw.startsWith(cleanTyped)) {
+          return `<span class="wf-tok typing">${typed}</span>`;
+        }
+        return `<span class="wf-tok err">${typed}</span>`;
+      }).join('');
+    }
+
+    function renderClausePracticeBox() {
+      const clause = CLAUSES[state.activeClauseIdx];
+      const reps = getClauseReps(clause.id);
+      document.getElementById('clauseTitle').textContent = clause.title;
+
+      const badgeEl = document.getElementById('clauseRepBadge');
+      if (reps >= 3) {
+        badgeEl.textContent = `✓ 已背熟（已默写 ${reps} 遍）`;
+        badgeEl.style.color = 'var(--green)';
+      } else {
+        badgeEl.textContent = `已默写 ${reps} / 3 遍`;
+        badgeEl.style.color = 'var(--amber)';
+      }
+
+      const enEl = document.getElementById('clauseEn');
+      enEl.textContent = clause.en;
+      enEl.classList.toggle('is-masked', clauseMasked);
+
+      const maskBtn = document.getElementById('clauseMaskBtn');
+      maskBtn.textContent = clauseMasked ? '👀 偷看原句' : '🙈 遮住原句';
+      maskBtn.className = clauseMasked ? 'btn btn-sm btn-primary' : 'btn btn-sm btn-outline';
+
+      document.getElementById('clauseZh').textContent = `中文：${clause.zh}`;
+      document.getElementById('clauseTip').textContent = `💡 ${clause.tip}`;
+
+      const hintLine = document.getElementById('clauseHintLine');
+      if (clauseShowHint) {
+        hintLine.classList.remove('hidden');
+        hintLine.textContent = '首字母骨架：' + clause.en.split(' ').map(w => w[0] + '_'.repeat(Math.max(1, w.length - 1))).join(' ');
+      } else {
+        hintLine.classList.add('hidden');
+      }
+
+      updateClauseWordFeedback();
+    }
+
+    function renderClausePage() {
+      const pillsEl = document.getElementById('clausePills');
+      pillsEl.innerHTML = CLAUSES.map((c, idx) => {
+        const reps = getClauseReps(c.id);
+        const done = reps >= 3;
+        const active = idx === state.activeClauseIdx;
+        return `<button class="clause-pill ${active ? 'active' : ''} ${done ? 'done' : ''}" onclick="selectClause(${idx})">
+          <span>${c.shortLabel}</span>
+          <span class="clause-pill-count">${done ? '✓ ' : ''}${reps}/3</span>
+        </button>`;
+      }).join('');
+
+      renderClauseWords();
+      renderClausePracticeBox();
+    }
+
+    window.selectClause = function(idx) {
+      state.activeClauseIdx = idx;
+      maskAllClauseWords = false;
+      maskedWordIds.clear();
+      clauseMasked = false;
+      document.getElementById('clauseInput').value = '';
+      document.getElementById('clauseStatusMsg').classList.add('hidden');
+      saveState();
+      renderClausePage();
+    };
+
+    document.getElementById('clauseMaskBtn').addEventListener('click', () => {
+      clauseMasked = !clauseMasked;
+      renderClausePracticeBox();
     });
 
-    // 拼写闯关
+    document.getElementById('clauseHintBtn').addEventListener('click', (e) => {
+      clauseShowHint = !clauseShowHint;
+      e.target.textContent = clauseShowHint ? '隐藏首字母' : '首字母提示';
+      renderClausePracticeBox();
+    });
+
+    document.getElementById('clauseSpeakBtn').addEventListener('click', () => {
+      speakText(CLAUSES[state.activeClauseIdx].en);
+    });
+
+    document.getElementById('clauseInput').addEventListener('focus', () => {
+      if (!clauseMasked) {
+        clauseMasked = true;
+        renderClausePracticeBox();
+      }
+    });
+
+    document.getElementById('clauseInput').addEventListener('input', updateClauseWordFeedback);
+
+    function submitClausePractice() {
+      const clause = CLAUSES[state.activeClauseIdx];
+      const inp = document.getElementById('clauseInput');
+      const val = inp.value;
+      const msgEl = document.getElementById('clauseStatusMsg');
+      msgEl.classList.remove('hidden');
+
+      if (normalizeForCompare(val) === normalizeForCompare(clause.en)) {
+        if (!state.clauseReps) state.clauseReps = {};
+        const nextRep = (state.clauseReps[clause.id] || 0) + 1;
+        state.clauseReps[clause.id] = nextRep;
+        // 整句拼对时，顺便把本句单词都标为已掌握
+        clause.words.forEach(wid => {
+          if (!state.mastered.includes(wid)) state.mastered.push(wid);
+        });
+        saveState();
+        speakText(clause.en);
+
+        const missingPunct = clause.en.endsWith(',') && !val.trim().endsWith(',')
+          ? '（小提醒：考场记得末尾加逗号哦）'
+          : (clause.en.endsWith('.') && !val.trim().endsWith('.') ? '（小提醒：记得末尾加句号哦）' : '');
+
+        msgEl.className = 'feedback-box fb-ok';
+        if (nextRep >= 3) {
+          msgEl.innerHTML = `<strong>🎉 第 ${nextRep} 遍全对！这一小句已经过关！</strong> ${missingPunct} 可以点「下一小句 →」继续！`;
+        } else {
+          msgEl.innerHTML = `<strong>✓ 第 ${nextRep} 遍全对！</strong> ${missingPunct} 已清空输入框，直接再敲一遍（目标 3 遍）！`;
+        }
+        inp.value = '';
+        renderClausePage();
+        inp.focus();
+      } else {
+        msgEl.className = 'feedback-box fb-err';
+        msgEl.innerHTML = `<strong>✗ 还有单词拼错或漏词</strong>，看上方标红的词改一下，或者点「👀 偷看原句」核对。`;
+      }
+    }
+
+    document.getElementById('clauseSubmitBtn').addEventListener('click', submitClausePractice);
+    document.getElementById('clauseInput').addEventListener('keydown', (e) => {
+      if (e.key === 'Enter') submitClausePractice();
+    });
+
+    document.getElementById('clauseNextBtn').addEventListener('click', () => {
+      window.selectClause((state.activeClauseIdx + 1) % CLAUSES.length);
+    });
+
+    document.getElementById('clauseResetRepBtn').addEventListener('click', () => {
+      const clause = CLAUSES[state.activeClauseIdx];
+      if (!state.clauseReps) state.clauseReps = {};
+      state.clauseReps[clause.id] = 0;
+      saveState();
+      document.getElementById('clauseStatusMsg').classList.add('hidden');
+      renderClausePage();
+    });
+
+    // ==================== TAB 2: 全部单词拼写闯关 ====================
     let spellQueue = [];
     let spellIdx = 0;
     let spellStreak = 0;
@@ -1458,9 +1288,9 @@
 
     function initSpellSession() {
       const scope = document.getElementById('spellScope').value;
-      let pool = [...WORDS];
-      if (scope === 'hard') pool = WORDS.filter(w => w.hard);
-      if (scope === 'mistakes') pool = WORDS.filter(w => state.mistakes.includes(w.id));
+      let pool = [...ALL_WORDS];
+      if (scope === 'hard') pool = ALL_WORDS.filter(w => w.hard);
+      if (scope === 'mistakes') pool = ALL_WORDS.filter(w => state.mistakes.includes(w.id));
 
       if (pool.length === 0) {
         document.getElementById('spellEmptyMsg').classList.remove('hidden');
@@ -1558,7 +1388,7 @@
         markMastered(current.id);
         speakText(current.word);
         fb.className = 'feedback-box fb-ok';
-        fb.innerHTML = `<strong>✓ 拼写完全正确！</strong> 记住搭配：<code>${current.phrase}</code>`;
+        fb.innerHTML = `<strong>✓ 拼写完全正确！</strong> ${current.tip}`;
         inp.disabled = true;
         document.getElementById('spellCheckBtn').classList.add('hidden');
         document.getElementById('spellNextBtn').classList.remove('hidden');
@@ -1615,230 +1445,7 @@
       document.getElementById('spellNextBtn').classList.remove('hidden');
     });
 
-    // 分句反复背写
-    const CHUNKS = [
-      {
-        id: 'c1',
-        label: '第1句 · 背景引入',
-        en: 'With the rapid development of society,',
-        zh: '随着社会的快速发展，',
-        tip: '注意 development 中间没有 e，society 是 cie，结尾有个逗号。'
-      },
-      {
-        id: 'c2',
-        label: '第2句 · 重要性',
-        en: 'becomes increasingly important for people.',
-        zh: '（[XX]）对人们变得越来越重要。',
-        tip: '注意 becomes（复数主语用 become），increasingly 是 ea，important 是 im- 开头 -tant 结尾。'
-      },
-      {
-        id: 'c3',
-        label: '第3句 · 自然过渡',
-        en: 'It is quite natural for us to ponder',
-        zh: '我们自然而然地会思考',
-        tip: '注意写 It is 不缩写，quite 的 e 在最后（别写成 quiet），ponder 表示“思考”。'
-      },
-      {
-        id: 'c4',
-        label: '尾巴1 · 通用类',
-        en: 'why people need it.',
-        zh: '人们为什么需要它。',
-        tip: '80% 的通用话题都可以直接接这句，简单不容易拼错。'
-      },
-      {
-        id: 'c5',
-        label: '尾巴2 · 利弊类',
-        en: 'the pros and cons of it.',
-        zh: '它的利与弊。',
-        tip: '记住 pros and cons（利与弊），末尾加句号。'
-      },
-      {
-        id: 'c6',
-        label: '尾巴3 · 科技/AI类',
-        en: 'how to use it properly.',
-        zh: '如何正确使用它。',
-        tip: '注意 properly 是 pro · per + ly，别漏掉 r 或写成 or。'
-      },
-      {
-        id: 'c7',
-        label: '尾巴4 · 目标/倡议类',
-        en: 'how to achieve this goal.',
-        zh: '如何实现这一目标。',
-        tip: '注意 achieve 是 i 在 e 前面（chieve），goal 是 oa。'
-      }
-    ];
-
-    let activeChunkIdx = 0;
-    let chunkMasked = false;
-    let chunkShowHint = false;
-
-    function getChunkReps(id) {
-      return (state.chunkReps && state.chunkReps[id]) ? state.chunkReps[id] : 0;
-    }
-
-    function normalizeForCompare(str) {
-      return str.trim().toLowerCase().replace(/\s+/g, ' ').replace(/[.,!?]+$/, '');
-    }
-
-    function updateChunkWordFeedback() {
-      const chunk = CHUNKS[activeChunkIdx];
-      const targetWords = chunk.en.split(' ');
-      const rawVal = document.getElementById('chunkInput').value;
-      const typedWords = rawVal.trim() ? rawVal.trim().split(/\s+/) : [];
-      const endsWithSpace = /\s$/.test(rawVal);
-
-      const row = document.getElementById('chunkWordFeedback');
-      row.innerHTML = targetWords.map((tw, i) => {
-        const cleanTw = tw.toLowerCase().replace(/[.,!?]+$/, '');
-        const typed = typedWords[i];
-        if (typed === undefined) {
-          return `<span class="wf-tok">${chunkMasked ? '____' : tw}</span>`;
-        }
-        const cleanTyped = typed.toLowerCase().replace(/[.,!?]+$/, '');
-        const isCompletedWord = i < typedWords.length - 1 || endsWithSpace;
-        if (cleanTyped === cleanTw) {
-          return `<span class="wf-tok ok">${typed}</span>`;
-        }
-        if (!isCompletedWord && cleanTw.startsWith(cleanTyped)) {
-          return `<span class="wf-tok typing">${typed}</span>`;
-        }
-        return `<span class="wf-tok err">${typed}</span>`;
-      }).join('');
-    }
-
-    function renderChunkView() {
-      const pillsEl = document.getElementById('chunkPills');
-      pillsEl.innerHTML = CHUNKS.map((c, idx) => {
-        const reps = getChunkReps(c.id);
-        const done = reps >= 3;
-        const active = idx === activeChunkIdx;
-        return `<button class="chunk-pill ${active ? 'active' : ''} ${done ? 'done' : ''}" onclick="selectChunk(${idx})">
-          <span>${c.label}</span>
-          <span class="chunk-pill-count">${done ? '✓ ' : ''}${reps}/3</span>
-        </button>`;
-      }).join('');
-
-      const chunk = CHUNKS[activeChunkIdx];
-      const reps = getChunkReps(chunk.id);
-      document.getElementById('chunkTitle').textContent = chunk.label;
-      const badgeEl = document.getElementById('chunkRepBadge');
-      if (reps >= 3) {
-        badgeEl.textContent = `✓ 已背熟（已默写 ${reps} 遍）`;
-        badgeEl.style.color = 'var(--green)';
-      } else {
-        badgeEl.textContent = `已默写 ${reps} / 3 遍`;
-        badgeEl.style.color = 'var(--amber)';
-      }
-
-      const enEl = document.getElementById('chunkEn');
-      enEl.textContent = chunk.en;
-      enEl.classList.toggle('is-masked', chunkMasked);
-
-      const maskBtn = document.getElementById('chunkMaskBtn');
-      maskBtn.textContent = chunkMasked ? '👀 偷看原句' : '🙈 遮住原句';
-      maskBtn.className = chunkMasked ? 'btn btn-sm btn-primary' : 'btn btn-sm btn-outline';
-
-      document.getElementById('chunkZh').textContent = `中文：${chunk.zh}`;
-      document.getElementById('chunkTip').textContent = `💡 ${chunk.tip}`;
-
-      const hintLine = document.getElementById('chunkHintLine');
-      if (chunkShowHint) {
-        hintLine.classList.remove('hidden');
-        hintLine.textContent = '首字母骨架：' + chunk.en.split(' ').map(w => w[0] + '_'.repeat(Math.max(1, w.length - 1))).join(' ');
-      } else {
-        hintLine.classList.add('hidden');
-      }
-
-      updateChunkWordFeedback();
-    }
-
-    window.selectChunk = function(idx) {
-      activeChunkIdx = idx;
-      document.getElementById('chunkInput').value = '';
-      document.getElementById('chunkStatusMsg').classList.add('hidden');
-      renderChunkView();
-    };
-
-    document.getElementById('chunkMaskBtn').addEventListener('click', () => {
-      chunkMasked = !chunkMasked;
-      renderChunkView();
-    });
-
-    document.getElementById('chunkHintBtn').addEventListener('click', (e) => {
-      chunkShowHint = !chunkShowHint;
-      e.target.textContent = chunkShowHint ? '隐藏首字母' : '首字母提示';
-      renderChunkView();
-    });
-
-    document.getElementById('chunkSpeakBtn').addEventListener('click', () => {
-      speakText(CHUNKS[activeChunkIdx].en);
-    });
-
-    document.getElementById('chunkInput').addEventListener('focus', () => {
-      if (!chunkMasked) {
-        chunkMasked = true;
-        renderChunkView();
-      }
-    });
-
-    document.getElementById('chunkInput').addEventListener('input', updateChunkWordFeedback);
-
-    function submitChunkPractice() {
-      const chunk = CHUNKS[activeChunkIdx];
-      const inp = document.getElementById('chunkInput');
-      const val = inp.value;
-      const msgEl = document.getElementById('chunkStatusMsg');
-      msgEl.classList.remove('hidden');
-
-      if (normalizeForCompare(val) === normalizeForCompare(chunk.en)) {
-        if (!state.chunkReps) state.chunkReps = {};
-        const nextRep = (state.chunkReps[chunk.id] || 0) + 1;
-        state.chunkReps[chunk.id] = nextRep;
-        saveState();
-        speakText(chunk.en);
-
-        const missingPunct = chunk.en.endsWith(',') && !val.trim().endsWith(',')
-          ? '（小提醒：考场记得末尾加逗号哦）'
-          : (chunk.en.endsWith('.') && !val.trim().endsWith('.') ? '（小提醒：记得末尾加句号哦）' : '');
-
-        msgEl.className = 'feedback-box fb-ok';
-        if (nextRep >= 3) {
-          msgEl.innerHTML = `<strong>🎉 第 ${nextRep} 遍全对！这句已经背熟啦！</strong> ${missingPunct} 可以继续再刷巩固，或点「换下一句」。`;
-        } else {
-          msgEl.innerHTML = `<strong>✓ 第 ${nextRep} 遍全对！</strong> ${missingPunct} 已清空输入框，直接再敲一遍（目标 3 遍）！`;
-        }
-        inp.value = '';
-        renderChunkView();
-        inp.focus();
-      } else {
-        msgEl.className = 'feedback-box fb-err';
-        msgEl.innerHTML = `<strong>✗ 还有单词拼错或漏词</strong>，看上方标红的词改一下，或者点「👀 偷看原句」核对。`;
-      }
-    }
-
-    document.getElementById('chunkSubmitBtn').addEventListener('click', submitChunkPractice);
-    document.getElementById('chunkInput').addEventListener('keydown', (e) => {
-      if (e.key === 'Enter') submitChunkPractice();
-    });
-
-    document.getElementById('chunkNextBtn').addEventListener('click', () => {
-      activeChunkIdx = (activeChunkIdx + 1) % CHUNKS.length;
-      document.getElementById('chunkInput').value = '';
-      document.getElementById('chunkStatusMsg').classList.add('hidden');
-      renderChunkView();
-      document.getElementById('chunkInput').focus();
-    });
-
-    document.getElementById('chunkResetRepBtn').addEventListener('click', () => {
-      const chunk = CHUNKS[activeChunkIdx];
-      if (!state.chunkReps) state.chunkReps = {};
-      state.chunkReps[chunk.id] = 0;
-      saveState();
-      document.getElementById('chunkStatusMsg').classList.add('hidden');
-      renderChunkView();
-    });
-
-    // 整句挖空默写
+    // ==================== TAB 3: 整段挖空默写 ====================
     let clozeShowFirstHint = false;
 
     function getClozeTokens() {
@@ -1974,7 +1581,7 @@
       }
     });
 
-    // 真题套用实战
+    // ==================== TAB 4: 真题套用实战 ====================
     const APPLY_CASES = [
       {
         title: '真题 1：大学图书馆是否应向公众开放（2024年6月四级）',
@@ -2108,7 +1715,7 @@
 
     updateStats();
     initApplySelect();
-    switchTab('cards');
+    switchTab('clauses');
   </script>
 </body>
 </html>
